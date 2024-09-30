@@ -1,0 +1,8 @@
+metadata_version: 1
+name: demoMLexperimentCO
+description: This capsule serves as a template to kickstart your ML experiments on
+  Code Ocean using Jupyter notebook and MLflow.
+tags:
+- Machine learning
+authors:
+- name: gsingh

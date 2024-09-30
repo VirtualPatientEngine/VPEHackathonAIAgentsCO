@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+# Clone the repo that contains your ML models (you can clone more than one repos)
+git clone https://github.com/VirtualPatientEngine/demoMLsourceCode
+# Run bdist
+# cd demoMLsourceCode/
+# python3 setup.py bdist_wheel --dist-dir dist/
+# cd dist/
+# ls -l
+# pip3 install demoMLsourceCode-1.1.0-py3-none-any.whl
+# Change to the dist folder (this folder usually contains the latest release)
+# Install the ML model package using pip3
+cd demoMLsourceCode/dist && pip3 install demoMLsourceCode-latest-py3-none-any.whl
+
+# NOTE: If you update the ML model source code, you will have to re-run this script.

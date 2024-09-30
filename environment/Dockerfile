@@ -1,0 +1,190 @@
+# hash:sha256:eb9d2848e7160106e7d0fe209d4dd3fa6c154c959e4136a0a4617f87984ce4c8
+ARG REGISTRY_HOST
+FROM $REGISTRY_HOST/codeocean/vscode:4.20.0-pylint2023.10.1-copilot1.143.601-python3.10.12-mambaforge322.11.1-4-ubuntu22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_DEFAULT_REGION
+ARG AWS_SECRET_ACCESS_KEY
+ARG CUSTOM_KEY
+
+ARG GIT_ASKPASS
+ARG GIT_ACCESS_TOKEN
+COPY git-askpass /
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        awscli=1.22.34-1 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN conda install -y \
+        jupyter==1.0.0 \
+        jupyterlab==4.1.6 \
+    && conda clean -ya
+
+RUN pip install -U --no-cache-dir \
+    boto3==1.34.84 \
+    mlflow==2.12.1 \
+    mlflow-server-proxy==0.1.0
+
+RUN pip3 install -U --no-cache-dir \
+    aiohttp==3.9.4 \
+    aiosignal==1.3.1 \
+    alembic==1.13.1 \
+    aniso8601==9.0.1 \
+    antlr4-python3-runtime==4.9.3 \
+    astroid==3.0.0 \
+    asttokens==2.4.1 \
+    async-timeout==4.0.3 \
+    attrs==23.2.0 \
+    babel==2.13.0 \
+    backcall==0.2.0 \
+    beautifulsoup4==4.12.3 \
+    bleach==6.1.0 \
+    blinker==1.6.3 \
+    certifi==2023.7.22 \
+    charset-normalizer==3.3.0 \
+    click==8.1.7 \
+    cloudpickle==3.0.0 \
+    colorama==0.4.6 \
+    comm==0.2.2 \
+    contourpy==1.2.1 \
+    coverage==7.3.2 \
+    cycler==0.12.1 \
+    debugpy==1.8.1 \
+    decorator==5.1.1 \
+    defusedxml==0.7.1 \
+    dill==0.3.7 \
+    docker==7.0.0 \
+    docopt==0.6.2 \
+    entrypoints==0.4 \
+    exceptiongroup==1.2.0 \
+    executing==2.0.1 \
+    fastjsonschema==2.19.1 \
+    filelock==3.9.0 \
+    flask==3.0.0 \
+    fonttools==4.51.0 \
+    frozenlist==1.4.1 \
+    fsspec==2024.3.1 \
+    ghp-import==2.1.0 \
+    gitdb==4.0.11 \
+    gitpython==3.1.43 \
+    graphene==3.3 \
+    graphql-core==3.2.3 \
+    graphql-relay==3.2.0 \
+    greenlet==3.0.3 \
+    griffe==0.36.5 \
+    gunicorn==21.2.0 \
+    hydra-core==1.3.2 \
+    idna==3.4 \
+    importlib-metadata==7.1.0 \
+    iniconfig==2.0.0 \
+    ipykernel==6.29.4 \
+    ipython==8.23.0 \
+    isort==5.12.0 \
+    itsdangerous==2.1.2 \
+    jedi==0.19.1 \
+    jinja2==3.1.2 \
+    joblib==1.4.0 \
+    jsonschema==4.22.0 \
+    jsonschema-specifications==2023.12.1 \
+    jupyter-client==8.6.1 \
+    jupyter-core==5.7.2 \
+    jupyterlab-pygments==0.3.0 \
+    kiwisolver==1.4.5 \
+    lightning==2.2.4 \
+    lightning-utilities==0.11.2 \
+    mako==1.3.3 \
+    markdown==3.5 \
+    markupsafe==2.1.3 \
+    matplotlib==3.8.4 \
+    matplotlib-inline==0.1.6 \
+    mccabe==0.7.0 \
+    mergedeep==1.3.4 \
+    mistune==3.0.2 \
+    mkdocs==1.5.3 \
+    mkdocs-autorefs==0.5.0 \
+    mkdocs-material==9.4.5 \
+    mkdocs-material-extensions==1.2 \
+    mkdocstrings==0.23.0 \
+    mkdocstrings-python==1.7.3 \
+    mlflow==2.12.1 \
+    mpmath==1.3.0 \
+    multidict==6.0.5 \
+    nbclient==0.10.0 \
+    nbconvert==7.16.4 \
+    nbformat==5.10.4 \
+    nest-asyncio==1.6.0 \
+    networkx==3.2.1 \
+    numpy==1.26.4 \
+    omegaconf==2.3.0 \
+    packaging==23.2 \
+    paginate==0.5.6 \
+    pandas==2.2.2 \
+    pandocfilters==1.5.1 \
+    parso==0.8.4 \
+    pathspec==0.11.2 \
+    pexpect==4.9.0 \
+    pickleshare==0.7.5 \
+    pillow==10.2.0 \
+    platformdirs==3.11.0 \
+    pluggy==1.3.0 \
+    prompt-toolkit==3.0.43 \
+    protobuf==5.26.1 \
+    psutil==5.9.8 \
+    ptyprocess==0.7.0 \
+    pure-eval==0.2.2 \
+    pyarrow==15.0.2 \
+    pygments==2.16.1 \
+    pylint==3.0.1 \
+    pymdown-extensions==10.3 \
+    pyparsing==3.1.2 \
+    pytest==7.4.2 \
+    pytest-cov==4.1.0 \
+    python-dateutil==2.8.2 \
+    pytorch-lightning==2.2.4 \
+    pytz==2024.1 \
+    pyyaml==6.0.1 \
+    pyyaml-env-tag==0.1 \
+    pyzmq==26.0.0 \
+    querystring-parser==1.2.4 \
+    referencing==0.35.1 \
+    regex==2023.10.3 \
+    requests==2.31.0 \
+    rpds-py==0.18.0 \
+    scikit-learn==1.4.2 \
+    scipy==1.13.0 \
+    six==1.16.0 \
+    smmap==5.0.1 \
+    soupsieve==2.5 \
+    sqlalchemy==2.0.29 \
+    sqlparse==0.5.0 \
+    stack-data==0.6.3 \
+    sympy==1.12 \
+    threadpoolctl==3.4.0 \
+    tinycss2==1.3.0 \
+    tomli==2.0.1 \
+    tomlkit==0.12.1 \
+    torch==2.2.2 \
+    torch-geometric==2.5.2 \
+    torchaudio==2.2.2 \
+    torchmetrics==1.3.2 \
+    torchvision==0.17.2 \
+    tornado==6.4 \
+    tqdm==4.66.2 \
+    traitlets==5.14.2 \
+    transformers==4.40.2 \
+    typing-extensions==4.11.0 \
+    tzdata==2024.1 \
+    urllib3==2.0.6 \
+    vadersentiment==3.3.2 \
+    watchdog==3.0.0 \
+    wcwidth==0.2.13 \
+    webencodings==0.5.1 \
+    werkzeug==3.0.0 \
+    yarg==0.1.9 \
+    yarl==1.9.4 \
+    zipp==3.18.1
+
+COPY postInstall /
+RUN /postInstall

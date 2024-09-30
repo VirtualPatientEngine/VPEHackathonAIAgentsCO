@@ -1,0 +1,6 @@
+defaults:
+  - _self_
+  - model: mlp
+  - data: cora
+  - trainer: default
+  - logger: mlflow

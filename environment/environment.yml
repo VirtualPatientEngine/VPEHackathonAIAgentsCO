@@ -1,0 +1,12 @@
+environment_version: 1
+credentials:
+- type: aws
+  id: YnllgjSAx2IaMk
+  description: S3_full_access_ml_flow_teamp-vpe
+  access_key_id: AWS_ACCESS_KEY_ID
+  secret_access_key: AWS_SECRET_ACCESS_KEY
+  region: AWS_DEFAULT_REGION
+- type: general
+  id: igeFi5xqKhYQcq
+  description: s3-vpe-ml-logs
+  value: CUSTOM_KEY
