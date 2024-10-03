@@ -1,0 +1,29 @@
+extra_css:
+- custom.css
+nav:
+- Home: index.md
+
+plugins:
+- mkdocstrings:
+    paths:
+    - evaluation_public
+- search
+site_name: VPE
+repo_name: VirtualPatientEngine
+repo_url: https://github.com/VirtualPatientEngine
+site_name: Hackathon (VPE)
+theme:
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/VPE.png
+  name: material
+  palette:
+  - accent: black
+    primary: white
+    scheme: default
+nav:
+  - Home: index.md
+markdown_extensions:
+  - attr_list
+extra_css:
+  - custom.css
