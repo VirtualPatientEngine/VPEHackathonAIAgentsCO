@@ -1,13 +1,3 @@
-extra_css:
-- custom.css
-nav:
-- Home: index.md
-
-plugins:
-- mkdocstrings:
-    paths:
-    - evaluation_public
-- search
 site_name: VPE
 repo_name: VirtualPatientEngine
 repo_url: https://github.com/VirtualPatientEngine
