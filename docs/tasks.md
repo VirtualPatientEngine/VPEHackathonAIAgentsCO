@@ -44,18 +44,18 @@ hide:
 - **Output**: list of differentially expressed genes and pathway enrichment analysis visualization
 
 ## AI agent for Biomedical knowledge graph reasoning and construction
-- Special software requirements: [LLMGraphTransformer](https://api.python.langchain.com/en/latest/graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html) and [ULTRA](https://github.com/DeepGraphLearning/ULTRA)
-- Biomedical knowledge graph dataset: [PrimeKG](https://github.com/mims-harvard/PrimeKG) specifically the subset used in [STARK](https://github.com/snap-stanford/stark)
+- Special software requirements: [PyTorch Geometric](https://github.com/pyg-team/pytorch_geometric) and [available models through PyG](https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html), [LLMGraphTransformer](https://api.python.langchain.com/en/latest/graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html), and schema-agnostic graph foundation model (e.g., [ULTRA](https://github.com/DeepGraphLearning/ULTRA))
+- Biomedical knowledge graph dataset: [PrimeKG](https://github.com/mims-harvard/PrimeKG) specifically the subset used in [STARK](https://github.com/snap-stanford/stark) for textual Q&A
 - Other data: [PubMed](https://pubmed.ncbi.nlm.nih.gov/) for original articles
 - Graph database: [NetworkX](https://networkx.org/)
 
 ### Task type 1
-- **Description**: Knowledge graph Q&A and retrieval of K-hop subgraph explanations
+- **Description**: Knowledge graph Q&A and retrieval of the K-hop subgraph explanations
 - **Input**: Natural language question (see subset used in https://arxiv.org/abs/2404.13207 for PrimeKG)
 - **Output**: Ranked nodes answers and visualization of k-hop subgraphs
 
 ### Task type 2
-- **Description**: Disease knowledge graph construction from text using a text-to-graph model to construct the initial knowledge graph and link prediction model to fill in gaps in the reconstructed knowledge graph
+- **Description**: Disease knowledge graph construction from text using a text-to-graph model to construct the initial knowledge graph and a link prediction model to fill in gaps in the reconstructed knowledge graph
 - **Input**: List of disease MeSH terms and associated articles from PubMed and list of nodes and edges (same as in PrimeKG)
 - **Output**: NetworkX representation of the knowledge graph and visualization
 
