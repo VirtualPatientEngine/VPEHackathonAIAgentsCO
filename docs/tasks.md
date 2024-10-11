@@ -19,28 +19,33 @@ hide:
 - Other data: [PubMed](https://pubmed.ncbi.nlm.nih.gov/) for original articles
 
 ### Task type 1
-- **Description**: Simulation of a mathematical model and reporting of the biomarker trajectories and predicted clinical efficacy
+- **Description**: Forward simulation of a mathematical model and reporting of the biomarker trajectories and predicted clinical efficacy
 - **Input**: simulation parameters such as initial concentrations
 - **Output**: time-course of simulation species
 
 ### Task type 2
+- **Description**: Reverse fitting of a mathematical model and reporting of the parameter ranges
+- **Input**: time-course of species
+- **Output**: fitted model parameters
+
+### Task type 3
 - **Description**: Creating a mathematical model from scratch
 - **Input**: Original article describing the mathematical model and list of equations
 - **Output**: SBML model with annotated species
 
 ## AI agents for omics and foundation models
-- Special software requirements: [scGPT](https://www.nature.com/articles/s41592-024-02201-0)
+- Special software requirements: [Cell2Sentence](https://www.biorxiv.org/content/10.1101/2023.09.11.557287v3.full)
 - Data for analysis: [cell by gene](https://cellxgene.cziscience.com/)
-- Other tools/analyses: [differential gene set enrichment analysis using GO](https://amigo.geneontology.org/amigo), UMAP
+- Other tools/analyses: [differential gene set enrichment analysis using GO](https://amigo.geneontology.org/amigo), [UMAP](https://docs.rapids.ai/api/cuml/stable/api/#umap)
 
 ### Task type 1
-- **Description**: Integration of multiple scRNA seq datasets, correction for batch effects, annotation of cells, and reporting of the results as a UMAP
-- **Input**: multiple cellxgene datasets for a particular disease (e.g., Rheumatoid Arthritis)
+- **Description**: Integration of multiple scRNA seq datasets, correction for batch effects, and annotation of cells
+- **Input**: multiple cell x gene datasets for a particular disease (e.g., Rheumatoid Arthritis, Atopic Dermatitis, Inflammatory Bowel Disease, etx.)
 - **Output**: UMAP visualization with cell annotation
 
 ### Task type 2
 - **Description**: Simulation of gene perturbation and reporting of the predicted differentially expressed genes using pathway enrichment analysis
-- **Input**: cell x gene dataset for a particular disease, knockout gene list
+- **Input**: cell x gene dataset for a particular disease; knockout gene list
 - **Output**: list of differentially expressed genes and pathway enrichment analysis visualization
 
 ## AI agent for Biomedical knowledge graph reasoning and construction
