@@ -15,6 +15,7 @@ hide:
 - Version control: [GitHub](https://github.com/VirtualPatientEngine)
 - AI Agent application requirements: [Streamlit](https://streamlit.io/), [Ollama](https://ollama.com/), [LangChain](https://www.langchain.com/), and [FAISS](https://github.com/facebookresearch/faiss)
 
+## Setup
 ### Step 1: Introduction to our computational research platform with Code Ocean
 1. View a [short overview video](https://www.youtube.com/watch?v=k_qddEpTEjo) of the Code Ocean platform
 2. Review further information in the Code Ocean [user guide](https://docs.codeocean.com/user-guide) if needed
@@ -26,8 +27,8 @@ hide:
 4. After team members update their capsules branch, members should `push` to their teams branch
 5. Each team member then updates their capsules with their team members contributions by `pulling` to their capsules branch
 
-> <font color=black>💡tips</font><br>
-> 1. Use the command line `terminal` in the VS Code editor for pushing and pulling using `git`<br>
+> <font color=black>💡Tip</font><br>
+> 1. Use the command line `terminal` in the VS Code editor for running `git` commands <br>
 > 2. Quick reference of [git commands](https://www.geeksforgeeks.org/git-cheat-sheet/) if you forget and the [full documentation](https://git-scm.com/docs/git) if typing `git --help` is not sufficient
 
 ### Step 3: Familiarization with the template Code Ocean AI Agents capsule
@@ -45,9 +46,9 @@ hide:
 
 3. Extended examples needed for completing the Hackathon challenges
 
-> <font color=black>💡tips</font><br>
+> <font color=black>💡Tip</font><br>
 > 1. Use the `Scratch` folder for downloading large data files<br>
-> 2. Use the VS Code editor to launch the Ollama server, interact with Streamlit, and code
+> 2. Use the VS Code editor to launch the Ollama server, interact with Streamlit, coding, etc.
 
 ### Step 4: Launching, working in, and stopping the capsule
 1. Click the `VS Code` icon on the top right under `Reproducible run` to launch a cloud workstation on AWS; Please note that the first time you launch a capsule it will take a few minutes to allocate the resources on AWS.
@@ -62,6 +63,7 @@ hide:
 4. Update your branch with your teams changes
 
     > git fetch --all --prune<br>
+    > git checkout feat/name<br>
     > git merge team/name<br>
 
 5. Share your changes with your teams branch
