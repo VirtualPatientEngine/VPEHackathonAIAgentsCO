@@ -21,9 +21,25 @@ hide:
 2. Review further information in the Code Ocean [user guide](https://docs.codeocean.com/user-guide) if needed
 
 ### Step 2: Enable simultaneous capsule collaboration with version control using git and GitHub
-1. Navigate to our [GitHub repository](https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCO)
-2. Each team will create their own fork called "team/name"
-3. Each team member will create their own capsule `create a new capsule` through the option `clone from VirtualPatientEngine`
+1. Navigate to our [GitHub repository](https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate)
+2. Each team will create their own fork
+
+VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/VPEHackathonAIAgentsCOTemplate/main
+
+3. Each team member will create their own capsule in Code Ocean by cloning their team's GitHub repository
+
+    1. Click on the `New Capsule` button on the top right corner.
+    2. Select `Copy from public Git`.
+    3. Paste the git repository address: (i.e., https://github.com/[TeamLeadAccount]/VPEHackathonAIAgentsCOTemplate.git)
+    4. Click `import`
+    5. The capsule will be cloned within a few seconds.
+
+4. Each team member will need to attached shared data assets to their own capsule in Code Ocean
+
+    1. In the capsule view, in the data folder in the files tree click ⚙️manage
+    2. Attach the data-assets by clicking the plus sign (⊕)
+    3. The data assets are `collections: cellxgene census metadata 2024-04-24` and `ollama_models_09_2024`
+
 4. After team members update their capsules branch, members should `push` to their teams branch
 5. Each team member then updates their capsules with their team members contributions by `pulling` to their capsules branch
 
@@ -45,10 +61,43 @@ hide:
     > [Ctrl] + [C]
 
 3. Extended examples needed for completing the Hackathon challenges
+4. Downloading datasets and models (Ollama example)
+
+    > \# Create the source directory if it doesn't exist<br>
+    > mkdir -p /scratch/.ollama<br>
+    > \# delete the existing symbolic link link<br>
+    > rm /root/.ollama<br>
+    > \# Create the new symbolic link (each write to /root/.ollama will be directed to /scratch/.ollama)<br>
+    > ln -s  /scratch/.ollama /root/.ollama<br>
+    > \# copy the key:<br>
+    > cp /data/.ollama/id_ed25519 /scratch/.ollama/id_ed25519<br>
+    > \# start the ollama server in the scratch directory<br>
+    > cd scratch<br>
+    > cd ollama serve<br>
+    > \# list and pull models<br>
+    > ollama list<br>
+    > ollama pull llama3.1<br>
+
+5. Downloading datasets and models (Stark example)
+
+    > \# Create and activate a virtual environment (Optional)<br>
+    > python -m venv .venv<br>
+    > source .venv/bin/activate<br>
+    > \# Install stark via pip<br>
+    > pip install stark-qa<br>
+    > \# Download to scratch<br>
+    > python
+    > from stark_qa import load_skb<br>
+    > skb = load_skb("prime", download_processed=True, root="/scratch")<br>
+    > \# Deactivate virtual environment when done<br>
+    > exit()<br>
+    > deactivate<br>
 
 > <font color=black>💡Tip</font><br>
 > 1. Use the `Scratch` folder for downloading large data files<br>
-> 2. Use the VS Code editor to launch the Ollama server, interact with Streamlit, coding, etc.
+> 2. Use the VS Code editor to launch the Ollama server, interact with Streamlit, coding, etc.<br>
+> 3. If you use a virtual envrionment, be sure to add the virtual environment directory to .gitingnore!<br>
+> 4. Ollama [cheat sheat](https://secretdatascientist.com/ollama-cheatsheet/)<br>
 
 ### Step 4: Launching, working in, and stopping the capsule
 1. Click the `VS Code` icon on the top right under `Reproducible run` to launch a cloud workstation on AWS; Please note that the first time you launch a capsule it will take a few minutes to allocate the resources on AWS.
