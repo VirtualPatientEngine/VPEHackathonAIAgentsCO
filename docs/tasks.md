@@ -10,14 +10,12 @@ hide:
 > **Location** BioLabs Heidelberg and Online<br>
 
 ## Category 1: AI agents for computational modelling and simulation
-- Special software requirements: https://github.com/copasi/basico
-- [Documentation ](https://basico.readthedocs.io/en/latest/index.html) of BASICO:  
-- (Task type 1 and Task type 3) Data for computational modelling: ODE mathematical models in SBML format from BioModels e.g., [insulin dynamics](https://www.ebi.ac.uk/biomodels/BIOMD0000000482), [IBD disease dynamics](https://www.ebi.ac.uk/biomodels/BIOMD0000000535)
-- (Task type 2) Computational IBD model for parameter fitting: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1111/cts.12849) and [xml file](https://ascpt.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fcts.12849&file=cts12849-sup-0004-Supinfo.zip)
-- (Task type 3) Computational IBD model in non-standard format: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.12932) and [MATLAB code](https://zenodo.org/records/7574219#.Y9LLJOLMKwo) 
-- (Task type 3) Ground truth for MATLAB to SBML conversion: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.12749), [MATLAB equations](https://ascpt.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fpsp4.12749&file=psp412749-sup-0002-Supinfo.zip) and [SBML file](./Gadkar21_mod.xml).
+- Special software requirements: https://github.com/copasi/basico [Documentation](https://basico.readthedocs.io/en/latest/index.html)  
+- *Task type 1 and Task type 3* Data for computational modelling: ODE mathematical models in SBML format from BioModels e.g., [insulin dynamics](https://www.ebi.ac.uk/biomodels/BIOMD0000000482), [IBD disease dynamics](https://www.ebi.ac.uk/biomodels/BIOMD0000000535)
+- *Task type 2* Computational IBD model for parameter fitting: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1111/cts.12849) and [xml file](https://ascpt.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fcts.12849&file=cts12849-sup-0004-Supinfo.zip)
+- *Task type 3* Computational IBD model in non-standard format: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.12932) and [MATLAB code](https://zenodo.org/records/7574219#.Y9LLJOLMKwo) 
+- *Task type 3* Ground truth for MATLAB to SBML conversion: [paper](https://ascpt.onlinelibrary.wiley.com/doi/10.1002/psp4.12749), [MATLAB equations](https://ascpt.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fpsp4.12749&file=psp412749-sup-0002-Supinfo.zip) and [SBML file](./Gadkar21_mod.xml).
 - Data for model annotation: [cell ontology](https://bioportal.bioontology.org/ontologies/CL), [ChEBI](https://www.ebi.ac.uk/chebi/aboutChebiForward.do), and [UniProtKB](https://www.uniprot.org/)
-
 
 > <font color=black>🧑‍🏫</font><br>
 > Lilija Wehling
