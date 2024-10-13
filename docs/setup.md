@@ -31,17 +31,22 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
     1. Click on the `New Capsule` button on the top right corner.
     2. Select `Copy from public Git`.
     3. Paste the git repository address: (i.e., https://github.com/[TeamLeadAccount]/VPEHackathonAIAgentsCOTemplate.git)
-    4. Click `import`
+    4. Click `clone`
     5. The capsule will be cloned within a few seconds.
 
-4. Each team member will need to attached shared data assets to their own capsule in Code Ocean
+4. Each team member will need to add their own pesonal access token in Code Ocean
+
+    1. Follow GitHub instructions to generate personal access token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+    2. Then on Code Ocean, click on the `account` icon on the bottom left side, and go to `credentials`.
+    3. Click on `⊕ Add credential` and choose `GitHub`, then add your username (in GitHub) and the token you have created.
+
+5. Each team member will need to attached shared data assets to their own capsule in Code Ocean
 
     1. In the capsule view, in the data folder in the files tree click ⚙️manage
     2. Attach the data-assets by clicking the plus sign (⊕)
     3. The data assets are `collections: cellxgene census metadata 2024-04-24` and `ollama_models_09_2024`
 
-4. After team members update their capsules branch, members should `push` to their teams branch
-5. Each team member then updates their capsules with their team members contributions by `pulling` to their capsules branch
+6. Coaches will create a seperate branch for each team to work on. Individual team members will contribute by syncing with their teams branch (see section step 4 below)
 
 > <font color=black>💡Tip</font><br>
 > 1. Use the command line `terminal` in the VS Code editor for running `git` commands <br>
@@ -101,12 +106,20 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
 
 ### Step 4: Launching, working in, and stopping the capsule
 1. Click the `VS Code` icon on the top right under `Reproducible run` to launch a cloud workstation on AWS; Please note that the first time you launch a capsule it will take a few minutes to allocate the resources on AWS.
-2. Create your branch 
+2. In a new terminal, add the remote team branches
 
-    > \# check to see that there is only the main branch on your teams fork<br>
+    > \# add a the VPE remote branches<br>
+    > git remote -v
+    > git remote add upstream https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate.git
+
+2. Check to see that your teams branch is there e.g., `upstream/[Team Name]`. This is the branch that your team will sync with
+3. Create your branch derived from your teams branch
+
+    > \# check to see that your teams branch is there<br>
     > git branch -v<br>
     > \# create a branch for your features (feat) and fixes (fix)<br>
-    > git checkout -b "feat/name"<br>
+    > git checkout upstream/[Team Name]<br>
+    > git checkout -b feat/name<br>
 
 3. Hack away 😀
 4. Commit your changes
@@ -115,29 +128,29 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
     > git add .<br>
     > \# add your changes to the commit<br>
     > git commit -m "feat: my cool feature"<br>
-    > \# push your changes to your branch<br>
+    > \# push your changes to your local branch<br>
     > git push origin feat/name<br>
 
 5. Update your branch with your teams changes
 
     > \# fetch all changes from upstream branches<br>
     > git fetch --all --prune<br>
-    > \# update the main branch<br>
-    > git checkout main<br>
-    > git pull main<br>
-    > \# merge changes from main into your branch<br>
+    > \# update the local team branch<br>
+    > git checkout [Team Name]<br>
+    > git merge upstream/[Team Name]<br>
+    > \# merge changes from your local team branch into your branch<br>
     > git checkout feat/name<br>
-    > git merge main<br>
+    > git merge [Team Name]<br>
 
 6. Share your changes with your teams branch
 
-    > \# ensure main is up to date<br>
-    > git checkout main<br>
+    > \# ensure your local team branch is up to date<br>
+    > git checkout [Team Name]<br>
     > git fetch --all --prune<br>
-    > git pull main<br>
+    > git git merge upstream/[Team Name]<br>
     > \# merge your changes (and resolve any conflicts)<br>
     > git merge feat/name<br>
-    > git push origin main<br>
+    > git push -u origin [Team Name]<br>
     > \# delete your old branch and begin a new one<br>
     > git branch -D feat/name<br>
     > git checkout -b feat/newName<br>
