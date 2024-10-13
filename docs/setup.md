@@ -5,9 +5,6 @@ hide:
 ---
 
 # <font color=black>Setup for AI agents for life sciences</font>
-> <font color=black>ℹ️</font><br>
-> **Date** 2024-10-14 to -15<br>
-> **Location** BioLabs Heidelberg and Online<br>
 
 ## Infrastructure and core software
 - Cloud infrastructure: [Amazon Web Services](https://aws.amazon.com/de/)
@@ -22,23 +19,23 @@ hide:
 
 ### Step 2: Enable simultaneous capsule collaboration with version control using git and GitHub
 1. Navigate to our [GitHub repository](https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate)
-2. Each team will create their own fork
+2. Each team will have their own branch `[Team Name]` created by the coaches
 
-VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/VPEHackathonAIAgentsCOTemplate/main
+    VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> /VPEHackathonAIAgentsCOTemplate/[Team Name]
 
-3. Each team member will create their own capsule in Code Ocean by cloning their team's GitHub repository
-
-    1. Click on the `New Capsule` button on the top right corner.
-    2. Select `Copy from public Git`.
-    3. Paste the git repository address: (i.e., https://github.com/[TeamLeadAccount]/VPEHackathonAIAgentsCOTemplate.git)
-    4. Click `clone`
-    5. The capsule will be cloned within a few seconds.
-
-4. Each team member will need to add their own pesonal access token in Code Ocean
+3. Each team member will need to add their own pesonal access token in Code Ocean
 
     1. Follow GitHub instructions to generate personal access token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
     2. Then on Code Ocean, click on the `account` icon on the bottom left side, and go to `credentials`.
     3. Click on `⊕ Add credential` and choose `GitHub`, then add your username (in GitHub) and the token you have created.
+
+4. Each team member will create their own capsule in Code Ocean by cloning the template repository
+
+    1. Click on the `New Capsule` button on the top right corner.
+    2. Select `Copy from public Git`.
+    3. Paste the git repository address: (i.e., https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate)
+    4. Click `clone`
+    5. The capsule will be cloned within a few seconds.
 
 5. Each team member will need to attached shared data assets to their own capsule in Code Ocean
 
@@ -46,7 +43,7 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
     2. Attach the data-assets by clicking the plus sign (⊕)
     3. The data assets are `collections: cellxgene census metadata 2024-04-24` and `ollama_models_09_2024`
 
-6. Coaches will create a seperate branch for each team to work on. Individual team members will contribute by syncing with their teams branch (see section step 4 below)
+6. Individual team members will contribute by syncing with their teams branch (see section step 4 below)
 
 > <font color=black>💡Tip</font><br>
 > 1. Use the command line `terminal` in the VS Code editor for running `git` commands <br>
@@ -56,8 +53,6 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
 1. README and overview of the repository
 2. The Streamlit Application with three starter examples
 
-    > \# setup the chromaDB<br>
-    > python /code/embedding_utils.py<br>
     > \# test that we can run the streamlit app<br>
     > python /code/streamlit_app.py<br>
     > \# Run the streamlit app<br>
@@ -85,7 +80,7 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
 
 5. Downloading datasets and models (Stark example)
 
-    > \# Create and activate a virtual environment (Optional)<br>
+    > \# Create and activate a virtual environment (Optional since we are working in a docker container)<br>
     > python -m venv .venv<br>
     > source .venv/bin/activate<br>
     > \# Install stark via pip<br>
