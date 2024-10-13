@@ -21,13 +21,14 @@ hide:
 1. Navigate to our [GitHub repository](https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate)
 2. Each team will have their own branch `[Team Name]` created by the coaches
 
-    VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> /VPEHackathonAIAgentsCOTemplate/[Team Name]
+    VPEHackathonAIAgentsCOTemplate/main -> VPEHackathonAIAgentsCOTemplate/[Team Name]
 
 3. Each team member will need to add their own pesonal access token in Code Ocean
 
-    1. Follow GitHub instructions to generate personal access token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
-    2. Then on Code Ocean, click on the `account` icon on the bottom left side, and go to `credentials`.
-    3. Click on `⊕ Add credential` and choose `GitHub`, then add your username (in GitHub) and the token you have created.
+    1. Follow GitHub instructions to generate a personal access token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+    2. Save your personal access token! You will also need it when working with Git
+    3. Then on Code Ocean, click on the `account` icon on the bottom left side, and go to `credentials`.
+    4. Click on `⊕ Add credential` and choose `GitHub`, then add your username (in GitHub) and the token you have created.
 
 4. Each team member will create their own capsule in Code Ocean by cloning the template repository
 
@@ -37,7 +38,7 @@ hide:
     4. Click `clone`
     5. The capsule will be cloned within a few seconds.
 
-5. Each team member will need to attached shared data assets to their own capsule in Code Ocean
+5. Each team member will need to attach shared data assets to their own capsule in Code Ocean
 
     1. In the capsule view, in the data folder in the files tree click ⚙️manage
     2. Attach the data-assets by clicking the plus sign (⊕)
@@ -47,7 +48,7 @@ hide:
 
 > <font color=black>💡Tip</font><br>
 > 1. Use the command line `terminal` in the VS Code editor for running `git` commands <br>
-> 2. Quick reference of [git commands](https://www.geeksforgeeks.org/git-cheat-sheet/) if you forget and the [full documentation](https://git-scm.com/docs/git) if typing `git --help` is not sufficient
+> 2. Quick reference of [git commands](https://education.github.com/git-cheat-sheet-education.pdf) if you forget and the [full documentation](https://git-scm.com/docs/git) if typing `git --help` is not sufficient
 
 ### Step 3: Familiarization with the template Code Ocean AI Agents capsule
 1. README and overview of the repository
@@ -103,18 +104,20 @@ hide:
 1. Click the `VS Code` icon on the top right under `Reproducible run` to launch a cloud workstation on AWS; Please note that the first time you launch a capsule it will take a few minutes to allocate the resources on AWS.
 2. In a new terminal, add the remote team branches
 
-    > \# add a the VPE remote branches<br>
+    > \# add a the VPE remote branches with your teams branch<br>
     > git remote -v
-    > git remote add upstream https://github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate.git
+    > git remote add upstream https://[user name]:[token]@github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate.git
+    > git fetch --all --prune
 
-2. Check to see that your teams branch is there e.g., `upstream/[Team Name]`. This is the branch that your team will sync with
+2. Check to see that your teams branch is there e.g., `upstream [Team Name]`. This is the branch that your team will sync with
 3. Create your branch derived from your teams branch
 
     > \# check to see that your teams branch is there<br>
     > git branch -v<br>
-    > \# create a branch for your features (feat) and fixes (fix)<br>
-    > git checkout upstream/[Team Name]<br>
-    > git checkout -b feat/name<br>
+    > \# switch to your teams branch<br>
+    > git checkout [Team Name]
+    > \# create a branch **starting from your teams branch** for your features (feat) and fixes (fix)<br>
+    > git checkout -b [feat or fix]/[name]<br>
 
 3. Hack away 😀
 4. Commit your changes
@@ -124,7 +127,7 @@ hide:
     > \# add your changes to the commit<br>
     > git commit -m "feat: my cool feature"<br>
     > \# push your changes to your local branch<br>
-    > git push origin feat/name<br>
+    > git push origin [feat or fix]/[name]<br>
 
 5. Update your branch with your teams changes
 
@@ -132,9 +135,9 @@ hide:
     > git fetch --all --prune<br>
     > \# update the local team branch<br>
     > git checkout [Team Name]<br>
-    > git merge upstream/[Team Name]<br>
+    > git pull [Team name]<br>
     > \# merge changes from your local team branch into your branch<br>
-    > git checkout feat/name<br>
+    > git checkout [feat or fix]/[name]<br>
     > git merge [Team Name]<br>
 
 6. Share your changes with your teams branch
@@ -142,12 +145,12 @@ hide:
     > \# ensure your local team branch is up to date<br>
     > git checkout [Team Name]<br>
     > git fetch --all --prune<br>
-    > git git merge upstream/[Team Name]<br>
+    > git pull [Team name]<br>
     > \# merge your changes (and resolve any conflicts)<br>
-    > git merge feat/name<br>
-    > git push -u origin [Team Name]<br>
+    > git merge [feat or fix]/[name]<br>
+    > git push upstream [Team Name]<br>
     > \# delete your old branch and begin a new one<br>
-    > git branch -D feat/name<br>
-    > git checkout -b feat/newName<br>
+    > git branch -D [feat or fix]/[name]<br>
+    > git checkout -b [feat or fix]/[name]<br>
 
 7. When you are done, **please shut down the capsule to save resources!** by clicking the `red power` button on the top left.
