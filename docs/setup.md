@@ -101,25 +101,45 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
 
 ### Step 4: Launching, working in, and stopping the capsule
 1. Click the `VS Code` icon on the top right under `Reproducible run` to launch a cloud workstation on AWS; Please note that the first time you launch a capsule it will take a few minutes to allocate the resources on AWS.
-2. Hack away 😀
-3. Commit your changes
+2. Create your branch 
 
+    > \# check to see that there is only the main branch on your teams fork<br>
+    > git branch -v<br>
+    > \# create a branch for your features (feat) and fixes (fix)<br>
     > git checkout -b "feat/name"<br>
+
+3. Hack away 😀
+4. Commit your changes
+
+    > \# stage your changes for the next commit<br>
     > git add .<br>
+    > \# add your changes to the commit<br>
     > git commit -m "feat: my cool feature"<br>
+    > \# push your changes to your branch<br>
     > git push origin feat/name<br>
 
-4. Update your branch with your teams changes
+5. Update your branch with your teams changes
 
+    > \# fetch all changes from upstream branches<br>
     > git fetch --all --prune<br>
+    > \# update the main branch<br>
+    > git checkout main<br>
+    > git pull main<br>
+    > \# merge changes from main into your branch<br>
     > git checkout feat/name<br>
-    > git merge team/name<br>
+    > git merge main<br>
 
-5. Share your changes with your teams branch
+6. Share your changes with your teams branch
 
-    > git checkout team/name<br>
-    > git pull team/name<br>
+    > \# ensure main is up to date<br>
+    > git checkout main<br>
+    > git fetch --all --prune<br>
+    > git pull main<br>
+    > \# merge your changes (and resolve any conflicts)<br>
     > git merge feat/name<br>
-    > git push team/name<br>
+    > git push origin main<br>
+    > \# delete your old branch and begin a new one<br>
+    > git branch -D feat/name<br>
+    > git checkout -b feat/newName<br>
 
-6. When you are done, **please shut down the capsule to save resources!** by clicking the `red power` button on the top left.
+7. When you are done, **please shut down the capsule to save resources!** by clicking the `red power` button on the top left.
