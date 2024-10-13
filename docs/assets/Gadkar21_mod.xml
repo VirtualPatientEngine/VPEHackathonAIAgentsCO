@@ -1,0 +1,4830 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.44 (Build 295) on 2024-08-29 14:44 with libSBML version 5.20.0. -->
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model metaid="COPASI0" id="ColitisModel" name="ColitisModel">
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2024-08-29T09:13:45Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2024-08-29T09:13:45Z</dcterms:W3CDTF>
+          </dcterms:modified>
+        </rdf:Description>
+      </rdf:RDF>
+      <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <rdf:Description rdf:about="#COPASI0">
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2024-08-29T09:13:45Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+          </rdf:Description>
+        </rdf:RDF>
+      </copasi:COPASI>
+    </annotation>
+    <listOfFunctionDefinitions>
+      <functionDefinition id="MIN">
+        <annotation>
+          <function xmlns="http://sbml.org/annotations/function" definition="http://sbml.org/annotations/function/min"/>
+        </annotation>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> a </ci>
+            </bvar>
+            <bvar>
+              <ci> b </ci>
+            </bvar>
+            <piecewise>
+              <piece>
+                <ci> a </ci>
+                <apply>
+                  <leq/>
+                  <ci> a </ci>
+                  <ci> b </ci>
+                </apply>
+              </piece>
+              <otherwise>
+                <ci> b </ci>
+              </otherwise>
+            </piecewise>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_IL_10_clearance_rate" name="Function for IL-10_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> IL_10 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_10_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> IL_10_clearance_rate_k </ci>
+                <ci> IL_10 </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_APC_activation_rate" name="Function for APC_activation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_activation_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> EQ_APC_act_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> EQ_APC_act_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> EQ_APC_act_nH </ci>
+            </bvar>
+            <bvar>
+              <ci> Epithelial_Quality </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_APC_act_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_APC_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_APC_act_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_APC_act_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> APC_activation_rate_k </ci>
+                <ci> APC_inact </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> InfCK_APC_act_Emax </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> InfCK_APC_act_EC50 </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> Treg_APC_act_Imax </ci>
+                      <ci> Treg_act </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> Treg_APC_act_IC50 </ci>
+                      <ci> Treg_act </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> EQ_APC_act_Imax </ci>
+                      <apply>
+                        <power/>
+                        <ci> Epithelial_Quality </ci>
+                        <ci> EQ_APC_act_nH </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <power/>
+                        <ci> EQ_APC_act_IC50 </ci>
+                        <ci> EQ_APC_act_nH </ci>
+                      </apply>
+                      <apply>
+                        <power/>
+                        <ci> Epithelial_Quality </ci>
+                        <ci> EQ_APC_act_nH </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_Eff_proliferation_rate" name="Function for T_Eff_proliferation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_TEff_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_TEff_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_TEff_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_T_Eff </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_T_Eff </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_TEff_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_TEff_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEff_per_APC_prolif </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_prolif_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_TEff_prolif_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_TEff_prolif_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> T_Eff_prolif_rate_k </ci>
+                <ci> T_Eff_inact </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_TEff_prolif_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> TEff_per_APC_prolif </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> TEffCK_TEff_prolif_Emax </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> TEffCK_TEff_prolif_EC50 </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> InfCK_TEff_prolif_Emax </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> InfCK_TEff_prolif_EC50 </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_TEff_prolif_Emax </ci>
+                      <ci> PI3Kg_T_Eff </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_TEff_prolif_EC50 </ci>
+                      <ci> PI3Kg_T_Eff </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_TEff_prolif_Emax </ci>
+                      <ci> PI3Kd_T_Eff </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_TEff_prolif_EC50 </ci>
+                      <ci> PI3Kd_T_Eff </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> Treg_TEff_prolif_Imax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> Treg_act </ci>
+                        <ci> T_Eff_inact </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> Treg_TEff_prolif_IC50 </ci>
+                      <apply>
+                        <divide/>
+                        <ci> Treg_act </ci>
+                        <ci> T_Eff_inact </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_IL_12_production_rate" name="Function for IL-12_production_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> APCact_IL12_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APCIL12_prod_rate_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APCIL12_prod_rate_Imax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> APCact_IL12_prod_rate_k </ci>
+                <ci> APC_act </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_APCIL12_prod_rate_Imax </ci>
+                      <ci> PI3Kd_APC </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_APCIL12_prod_rate_IC50 </ci>
+                      <ci> PI3Kd_APC </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_IL_12_clearance_rate" name="Function for IL-12_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> IL_12 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_12_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> IL_12_clearance_rate_k </ci>
+                <ci> IL_12 </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_eff_cytokine_production_rate" name="Function for T_eff_cytokine_production_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TEffCK_prod_rate_k </ci>
+                <ci> T_Eff_act </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_eff_cytokine_clearance_rate" name="Function for T_eff_cytokine_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> T_eff_CK_clear_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> T_eff_CK_clear_rate_k </ci>
+                <ci> T_Eff_CKs </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_APC_inact_clearance_rate" name="Function for APC_inact_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> APCinact_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> APCinact_clearance_rate_k </ci>
+                <ci> APC_inact </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_quies_clearance_rate" name="Function for T_quies_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> Tquies_clearance_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Tquies_clearance_rate_k </ci>
+                <ci> T_quies </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Treg_differentiation_rate" name="Function for Treg_differentiation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_Treg_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL12_Treg_diff_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL12_Treg_diff_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_10 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_12 </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> Tquies_per_APC_diff </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_diff_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Treg_diff_rate_k </ci>
+                <ci> T_quies </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_Treg_diff_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> Tquies_per_APC_diff </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL10_Treg_diff_Emax </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL10_Treg_diff_EC50 </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_Treg_diff_Emax </ci>
+                      <ci> PI3Kg_T_quies </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_Treg_diff_EC50 </ci>
+                      <ci> PI3Kg_T_quies </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_Treg_diff_Emax </ci>
+                      <ci> PI3Kd_T_quies </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_Treg_diff_EC50 </ci>
+                      <ci> PI3Kd_T_quies </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL12_Treg_diff_Imax </ci>
+                      <ci> IL_12 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL12_Treg_diff_IC50 </ci>
+                      <ci> IL_12 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_Eff_inact_clearance_rate" name="Function for T_Eff_inact_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffInact_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_inact </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TEffInact_clearance_rate_k </ci>
+                <ci> T_Eff_inact </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Treg_inact_clearance_rate" name="Function for Treg_inact_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> TRegInact_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_inact </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TRegInact_clearance_rate_k </ci>
+                <ci> Treg_inact </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_IL_10_production_rate" name="Function for IL-10_production rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> APCact_IL10_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APCIL10_prod_rate_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_APCIL10_prod_rate_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_IL10_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci> Treg_IL10_prod_rate_k </ci>
+                  <ci> Treg_act </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> APCact_IL10_prod_rate_k </ci>
+                  <ci> APC_act </ci>
+                  <apply>
+                    <plus/>
+                    <cn> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> PI3Kd_APCIL10_prod_rate_Emax </ci>
+                        <ci> PI3Kd_APC </ci>
+                      </apply>
+                      <apply>
+                        <plus/>
+                        <ci> PI3Kd_APCIL10_prod_rate_EC50 </ci>
+                        <ci> PI3Kd_APC </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Treg_activation_rate" name="Function for Treg_activation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_Treg_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_10 </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_per_APC_activation </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Treg_act_rate_k </ci>
+                <ci> Treg_inact </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_Treg_act_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> Treg_per_APC_activation </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL10_Treg_activation_Emax </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL10_Treg_activation_EC50 </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_Treg_activation_Emax </ci>
+                      <ci> PI3Kd_Treg </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_Treg_activation_EC50 </ci>
+                      <ci> PI3Kd_Treg </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_Treg_activation_Emax </ci>
+                      <ci> PI3Kg_Treg </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_Treg_activation_EC50 </ci>
+                      <ci> PI3Kg_Treg </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_APC_act_clearance_rate" name="Function for APC_act_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> APCact_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> APCact_clearance_rate_k </ci>
+                <ci> APC_act </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_Eff_differentiation_rate" name="Function for T_Eff_differentiation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_TEff_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_TEff_diff_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_TEff_diff_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL12_TEff_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL12_TEff_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_10 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_12 </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_diff_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_diff_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> T_quies </ci>
+            </bvar>
+            <bvar>
+              <ci> Tquies_per_APC_diff </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> T_Eff_diff_rate_k </ci>
+                <ci> T_quies </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_TEff_diff_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> Tquies_per_APC_diff </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_TEff_diff_Emax </ci>
+                      <ci> PI3Kg_T_quies </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_TEff_diff_EC50 </ci>
+                      <ci> PI3Kg_T_quies </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_TEff_diff_Emax </ci>
+                      <ci> PI3Kd_T_quies </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_TEff_diff_EC50 </ci>
+                      <ci> PI3Kd_T_quies </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL12_TEff_diff_Emax </ci>
+                      <ci> IL_12 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL12_TEff_diff_EC50 </ci>
+                      <ci> IL_12 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL10_TEff_diff_Imax </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL10_TEff_diff_IC50 </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_APC_recruitment" name="Function for APC_recruitment">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_recruitment_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_APC_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_APC_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_APC_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_APC_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_APC_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_APC_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_APC_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> APC_recruitment_rate_k </ci>
+              <ci> APC_circ </ci>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> TEffCK_APC_recruit_Emax </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> TEffCK_APC_recruit_EC50 </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> InfCK_APC_recruit_Emax </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> InfCK_APC_recruit_EC50 </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PI3Kg_APC_recruit_Emax </ci>
+                    <ci> PI3Kg_APC_circ </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> PI3Kg_APC_recruit_EC50 </ci>
+                    <ci> PI3Kg_APC_circ </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_cell_recruitment" name="Function for T_cell_recruitment">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> InfCK_Tquies_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_Tquies_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_T_quies_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Tquies_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Tquies_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_Tquies_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_Tquies_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> T_quies_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> Tquies_recruitment_rate_k </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> Tquies_recruitment_rate_k </ci>
+              <ci> T_quies_circ </ci>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> TEffCK_Tquies_recruit_Emax </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> TEffCK_Tquies_recruit_EC50 </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> InfCK_Tquies_recruit_Emax </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> InfCK_Tquies_recruit_EC50 </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PI3Kg_Tquies_recruit_Emax </ci>
+                    <ci> PI3Kg_T_quies_circ </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> PI3Kg_Tquies_recruit_EC50 </ci>
+                    <ci> PI3Kg_T_quies_circ </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_Eff_activation_rate" name="Function for T_Eff_activation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_TEff_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_TEff_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_TEff_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_TEff_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_T_Eff </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_TEff_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_T_Eff </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_TEff_activation_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_TEff_activation_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEff_per_APC_activation </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_act_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_TEff_act_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_TEff_act_Imax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> T_Eff_act_rate_k </ci>
+                <ci> T_Eff_inact </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_TEff_act_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> TEff_per_APC_activation </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> TEffCK_TEff_activation_Emax </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> TEffCK_TEff_activation_EC50 </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> InfCK_TEff_activation_Emax </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> InfCK_TEff_activation_EC50 </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_TEff_activation_Emax </ci>
+                      <ci> PI3Kg_T_Eff </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_TEff_activation_EC50 </ci>
+                      <ci> PI3Kg_T_Eff </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_TEff_activation_Emax </ci>
+                      <ci> PI3Kd_T_Eff </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_TEff_activation_EC50 </ci>
+                      <ci> PI3Kd_T_Eff </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> Treg_TEff_act_Imax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> Treg_act </ci>
+                        <ci> T_Eff_inact </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> Treg_TEff_act_IC50 </ci>
+                      <apply>
+                        <divide/>
+                        <ci> Treg_act </ci>
+                        <ci> T_Eff_inact </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_T_cell_clearance_rate" name="Function for T_cell_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffAct_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TEffAct_clearance_rate_k </ci>
+                <ci> T_Eff_act </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Neutro_recruitment_rate" name="Function for Neutro_recruitment_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> InfCK_Neutro_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_Neutro_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_Neutro_recruit_nH </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutro_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutro_recruitment_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Neutro_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Neutro_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Neutro_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_Neutro_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_Neutro_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> Neutro_recruitment_rate_k </ci>
+              <ci> Neutro_circ </ci>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> TEffCK_Neutro_recruit_Emax </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> TEffCK_Neutro_recruit_EC50 </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> InfCK_Neutro_recruit_Emax </ci>
+                    <apply>
+                      <power/>
+                      <ci> Inf_CKs </ci>
+                      <ci> InfCK_Neutro_recruit_nH </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <apply>
+                      <power/>
+                      <ci> InfCK_Neutro_recruit_EC50 </ci>
+                      <ci> InfCK_Neutro_recruit_nH </ci>
+                    </apply>
+                    <apply>
+                      <power/>
+                      <ci> Inf_CKs </ci>
+                      <ci> InfCK_Neutro_recruit_nH </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PI3Kg_Neutro_recruit_Emax </ci>
+                    <ci> PI3Kg_Neutro_circ </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> PI3Kg_Neutro_recruit_EC50 </ci>
+                    <ci> PI3Kg_Neutro_circ </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Treg_act_clearance_rate" name="Function for Treg_act_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> TRegAct_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_act </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> TRegAct_clearance_rate_k </ci>
+                <ci> Treg_act </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_nTreg_circ_clearance_Rate" name="Function for nTreg_circ_clearance_Rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Blood </ci>
+            </bvar>
+            <bvar>
+              <ci> nTreg_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> nTreg_circ_clearance_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> nTreg_circ_clearance_rate_k </ci>
+                <ci> nTreg_circ </ci>
+              </apply>
+              <ci> Blood </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_PI3Ki_absorption_rate" name="Function for PI3Ki_absorption_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PI3Kinh_F </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_Ka </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_gi </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> PI3Kinh_Ka </ci>
+              <ci> PI3Kinh_F </ci>
+              <ci> PI3Kinh_gi </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_PI3Ki_clearance_rate" name="Function for PI3Ki_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Blood </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_CL </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_Vc </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_circ </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> PI3Kinh_CL </ci>
+                  <ci> PI3Kinh_Vc </ci>
+                </apply>
+                <ci> PI3Kinh_circ </ci>
+              </apply>
+              <ci> Blood </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_EChealthy_apoptosis" name="Function for EChealthy_apoptosis">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> EChealthy </ci>
+            </bvar>
+            <bvar>
+              <ci> Epi_quies_apoptosis_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_EC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_ECquies_apop_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_ECquies_apop_Imax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Epi_quies_apoptosis_rate_k </ci>
+                <ci> EChealthy </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Ka_ECquies_apop_Imax </ci>
+                      <ci> PI3Ka_EC </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Ka_ECquies_apop_IC50 </ci>
+                      <ci> PI3Ka_EC </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Treg_proliferation_rate" name="Function for Treg_proliferation_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_Demand </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_Treg_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> IL10_Treg_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> IL_10 </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_Treg_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_inact </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_per_APC_prolif </ci>
+            </bvar>
+            <bvar>
+              <ci> Treg_prolif_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Treg_prolif_rate_k </ci>
+                <ci> Treg_inact </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> APC_Treg_prolif_Emax </ci>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <apply>
+                        <divide/>
+                        <cn> 1 </cn>
+                        <ci> Treg_per_APC_prolif </ci>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <ci> APC_act </ci>
+                        <ci> APC_Demand </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> IL10_Treg_prolif_Emax </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> IL10_Treg_prolif_EC50 </ci>
+                      <ci> IL_10 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kg_Treg_prolif_Emax </ci>
+                      <ci> PI3Kg_Treg </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kg_Treg_prolif_EC50 </ci>
+                      <ci> PI3Kg_Treg </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_Treg_prolif_Emax </ci>
+                      <ci> PI3Kd_Treg </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_Treg_prolif_EC50 </ci>
+                      <ci> PI3Kd_Treg </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_ECact_apoptosis" name="Function for ECact_apoptosis">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> ECact </ci>
+            </bvar>
+            <bvar>
+              <ci> Epi_act_apoptosis_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_EC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_ECact_apop_IC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_ECact_apop_Imax </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Epi_act_apoptosis_rate_k </ci>
+                <ci> ECact </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Ka_ECact_apop_Imax </ci>
+                      <ci> PI3Ka_EC </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Ka_ECact_apop_IC50 </ci>
+                      <ci> PI3Ka_EC </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_insult" name="Function for insult">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> GI_Risk_Score </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> k_healing </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> GI_Risk_Score </ci>
+                <ci> k_healing </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_healing" name="Function for healing">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> GI_Risk_Score </ci>
+            </bvar>
+            <bvar>
+              <ci> RISK </ci>
+            </bvar>
+            <bvar>
+              <ci> k_healing </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> k_healing </ci>
+              <ci> RISK </ci>
+              <ci> GI_Risk_Score </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_PI3Ki_periph_exchange_rate" name="Function for PI3Ki_periph_exchange_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> PI3Kinh_Q </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_Vc </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_Vp </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_periph </ci>
+            </bvar>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> PI3Kinh_Q </ci>
+                  <ci> PI3Kinh_Vc </ci>
+                </apply>
+                <ci> PI3Kinh_circ </ci>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> PI3Kinh_Q </ci>
+                  <ci> PI3Kinh_Vp </ci>
+                </apply>
+                <ci> PI3Kinh_periph </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_ECactivation" name="Function for ECactivation">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Activating_Event </ci>
+            </bvar>
+            <bvar>
+              <ci> EChealthy </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_EC_act_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_EC_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutro_EC_act_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutro_EC_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutrophils </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_EC_act_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_EC_act_diff_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> kEC_activation </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kEC_activation </ci>
+                <ci> EChealthy </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> TEffCK_EC_act_Emax </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> TEffCK_EC_act_diff_EC50 </ci>
+                      <ci> T_Eff_CKs </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> InfCK_EC_act_Emax </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> InfCK_EC_act_EC50 </ci>
+                      <ci> Inf_CKs </ci>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> Neutro_EC_act_Emax </ci>
+                      <ci> Neutrophils </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> Neutro_EC_act_EC50 </ci>
+                      <ci> Neutrophils </ci>
+                    </apply>
+                  </apply>
+                  <ci> Activating_Event </ci>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Inf_CK_clearance_rate" name="Function for Inf_CK_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Inf_CK_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Inf_CK_clearance_rate_k </ci>
+                <ci> Inf_CKs </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_PI3K_inhibitor_AUC" name="Function for PI3K_inhibitor_AUC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3K_Inhibitor </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <ci> PI3K_Inhibitor </ci>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_PI3Ki_gi_elimination_rate" name="Function for PI3Ki_gi_elimination_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> GI </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_F </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_Ka </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kinh_gi </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_Ka </ci>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> PI3Kinh_F </ci>
+                </apply>
+                <ci> PI3Kinh_gi </ci>
+              </apply>
+              <ci> GI </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Activating_event_clearance_rate" name="Function for Activating_event_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Act_event_clear_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Activating_Event </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Act_event_clear_rate_k </ci>
+                <ci> Activating_Event </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_nTreg_recruitment_rate" name="Function for nTreg_recruitment_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> InfCK_nTreg_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> InfCK_nTreg_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Inf_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_nTreg_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_nTreg_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kg_nTreg_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_nTreg_recruit_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> TEffCK_nTreg_recruit_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> T_Eff_CKs </ci>
+            </bvar>
+            <bvar>
+              <ci> nTreg_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> nTreg_recruitment_rate_k </ci>
+            </bvar>
+            <apply>
+              <times/>
+              <ci> nTreg_recruitment_rate_k </ci>
+              <ci> nTreg_circ </ci>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> TEffCK_nTreg_recruit_Emax </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> TEffCK_nTreg_recruit_EC50 </ci>
+                    <ci> T_Eff_CKs </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> InfCK_nTreg_recruit_Emax </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> InfCK_nTreg_recruit_EC50 </ci>
+                    <ci> Inf_CKs </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PI3Kg_nTreg_recruit_Emax </ci>
+                    <ci> PI3Kg_nTreg_circ </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> PI3Kg_nTreg_recruit_EC50 </ci>
+                    <ci> PI3Kg_nTreg_circ </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Inf_CK_production_rate" name="Function for Inf_CK_production_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> APC_act </ci>
+            </bvar>
+            <bvar>
+              <ci> APCinfCK_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> NeutroInfCK_prod_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutrophils </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci> APCinfCK_prod_rate_k </ci>
+                  <ci> APC_act </ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci> NeutroInfCK_prod_rate_k </ci>
+                  <ci> Neutrophils </ci>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_ECformation" name="Function for ECformation">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> ECact </ci>
+            </bvar>
+            <bvar>
+              <ci> ECact_ECprolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> ECact_ECprolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_EC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_EC_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Ka_EC_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kb_EC </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kb_EC_prolif_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kb_EC_prolif_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> kEC_formation </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> kEC_formation </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> ECact_ECprolif_Emax </ci>
+                        <ci> ECact </ci>
+                      </apply>
+                      <apply>
+                        <plus/>
+                        <ci> ECact_ECprolif_EC50 </ci>
+                        <ci> ECact </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <minus/>
+                      <apply>
+                        <minus/>
+                        <cn> 1 </cn>
+                        <apply>
+                          <divide/>
+                          <apply>
+                            <times/>
+                            <ci> PI3Ka_EC_prolif_Emax </ci>
+                            <apply>
+                              <minus/>
+                              <cn> 1 </cn>
+                              <ci> PI3Ka_EC </ci>
+                            </apply>
+                          </apply>
+                          <apply>
+                            <plus/>
+                            <ci> PI3Ka_EC_prolif_EC50 </ci>
+                            <apply>
+                              <minus/>
+                              <cn> 1 </cn>
+                              <ci> PI3Ka_EC </ci>
+                            </apply>
+                          </apply>
+                        </apply>
+                      </apply>
+                      <apply>
+                        <divide/>
+                        <apply>
+                          <times/>
+                          <ci> PI3Kb_EC_prolif_Emax </ci>
+                          <apply>
+                            <minus/>
+                            <cn> 1 </cn>
+                            <ci> PI3Kb_EC </ci>
+                          </apply>
+                        </apply>
+                        <apply>
+                          <plus/>
+                          <ci> PI3Kb_EC_prolif_EC50 </ci>
+                          <apply>
+                            <minus/>
+                            <cn> 1 </cn>
+                            <ci> PI3Kb_EC </ci>
+                          </apply>
+                        </apply>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_nTreg_production_rate" name="Function for nTreg_production_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Blood </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_Treg_circ </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_nTreg_prod_EC50 </ci>
+            </bvar>
+            <bvar>
+              <ci> PI3Kd_nTreg_prod_Emax </ci>
+            </bvar>
+            <bvar>
+              <ci> nTreg_production_rate_k </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> nTreg_production_rate_k </ci>
+                <apply>
+                  <plus/>
+                  <cn> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> PI3Kd_nTreg_prod_Emax </ci>
+                      <ci> PI3Kd_Treg_circ </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> PI3Kd_nTreg_prod_EC50 </ci>
+                      <ci> PI3Kd_Treg_circ </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci> Blood </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Function_for_Neutro_clearance_rate" name="Function for Neutro_clearance_rate">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Mucosa </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutro_clearance_rate_k </ci>
+            </bvar>
+            <bvar>
+              <ci> Neutrophils </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> Neutro_clearance_rate_k </ci>
+                <ci> Neutrophils </ci>
+              </apply>
+              <ci> Mucosa </ci>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="length" name="length">
+        <listOfUnits>
+          <unit kind="metre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="area" name="area">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="volume" name="volume">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance" name="substance">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="Mucosa" name="Mucosa" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="Blood" name="Blood" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="GI" name="GI" spatialDimensions="3" size="1" constant="true"/>
+      <compartment id="Peripheral" name="Peripheral" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="T_Eff_act" name="T_Eff_act" compartment="Mucosa" initialConcentration="2.68536868135536" boundaryCondition="false" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">Activated effector T cells.</body>
+        </notes>
+      </species>
+      <species id="APC_act" name="APC_act" compartment="Mucosa" initialConcentration="6.05536332179932" boundaryCondition="false" constant="false"/>
+      <species id="Treg_act" name="Treg_act" compartment="Mucosa" initialConcentration="6.05158345460663" boundaryCondition="false" constant="false"/>
+      <species id="APC_inact" name="APC_inact" compartment="Mucosa" initialConcentration="350" boundaryCondition="false" constant="false"/>
+      <species id="IL_12" name="IL_12" compartment="Mucosa" initialConcentration="0.0329999999999999" boundaryCondition="false" constant="false"/>
+      <species id="IL_10" name="IL_10" compartment="Mucosa" initialConcentration="0.1" boundaryCondition="false" constant="false"/>
+      <species id="T_Eff_inact" name="T_Eff_inact" compartment="Mucosa" initialConcentration="43.2286347844102" boundaryCondition="false" constant="false"/>
+      <species id="Treg_inact" name="Treg_inact" compartment="Mucosa" initialConcentration="64.5585629983215" boundaryCondition="false" constant="false"/>
+      <species id="PI3Ka_EC" name="PI3Ka_EC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="T_Eff_CKs" name="T_Eff_CKs" compartment="Mucosa" initialConcentration="0.0329999999999999" boundaryCondition="false" constant="false"/>
+      <species id="T_quies" name="T_quies" compartment="Mucosa" initialConcentration="415.15906236797" boundaryCondition="false" constant="false"/>
+      <species id="PI3Kd_T_Eff" name="PI3Kd_T_Eff" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kd_APC" name="PI3Kd_APC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kd_T_quies" name="PI3Kd_T_quies" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kd_Treg" name="PI3Kd_Treg" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3K_Inhibitor" name="PI3K_Inhibitor" compartment="Mucosa" initialConcentration="0" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_T_Eff" name="PI3Kg_T_Eff" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_T_quies" name="PI3Kg_T_quies" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kb_EC" name="PI3Kb_EC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_EC" name="PI3Kg_EC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_APC" name="PI3Kg_APC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kb_T_quies" name="PI3Kb_T_quies" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Ka_T_quies" name="PI3Ka_T_quies" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kb_Treg" name="PI3Kb_Treg" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Ka_Treg" name="PI3Ka_Treg" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kb_APC" name="PI3Kb_APC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Ka_APC" name="PI3Ka_APC" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kb_T_Eff" name="PI3Kb_T_Eff" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Ka_T_Eff" name="PI3Ka_T_Eff" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_Treg" name="PI3Kg_Treg" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="Inf_CKs" name="Inf_CKs" compartment="Mucosa" initialConcentration="0.0329999999999999" boundaryCondition="false" constant="false"/>
+      <species id="APC_Demand" name="APC_Demand" compartment="Mucosa" initialConcentration="447.495221702789" boundaryCondition="true" constant="false"/>
+      <species id="Activating_Event" name="Activating_Event" compartment="Mucosa" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="Neutrophils" name="Neutrophils" compartment="Mucosa" initialConcentration="5.99999999999998" boundaryCondition="false" constant="false"/>
+      <species id="PI3Kg_Neutro" name="PI3Kg_Neutro" compartment="Mucosa" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3K_Inh_Tissue_AUC" name="PI3K_Inh_Tissue_AUC" compartment="Mucosa" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="PI3K_Inh_Tissue_SS" name="PI3K_Inh_Tissue_SS" compartment="Mucosa" boundaryCondition="true" constant="false"/>
+      <species id="EChealthy" name="EChealthy" compartment="Mucosa" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="ECact" name="ECact" compartment="Mucosa" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="Epithelial_Quality" name="Epithelial_Quality" compartment="Mucosa" initialConcentration="0" boundaryCondition="true" constant="false"/>
+      <species id="GI_Risk_Score" name="GI_Risk_Score" compartment="Mucosa" initialConcentration="0.217633042976773" boundaryCondition="true" constant="false"/>
+      <species id="totalCD4" name="totalCD4" compartment="Mucosa" initialConcentration="531.683212286664" boundaryCondition="true" constant="false"/>
+      <species id="totalAPCs" name="totalAPCs" compartment="Mucosa" initialConcentration="356.055363321799" boundaryCondition="true" constant="false"/>
+      <species id="totalTregs" name="totalTregs" compartment="Mucosa" initialConcentration="70.6101464529281" boundaryCondition="true" constant="false"/>
+      <species id="RISK" name="RISK" compartment="Mucosa" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="APC_circ" name="APC_circ" compartment="Blood" initialConcentration="0.999999999999998" boundaryCondition="true" constant="true"/>
+      <species id="T_quies_circ" name="T_quies_circ" compartment="Blood" initialConcentration="0.999999999999998" boundaryCondition="true" constant="true"/>
+      <species id="nTreg_circ" name="nTreg_circ" compartment="Blood" initialConcentration="0.999999999999998" boundaryCondition="false" constant="false"/>
+      <species id="PI3Kd_Treg_circ" name="PI3Kd_Treg_circ" compartment="Blood" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3K_Inh_circ_conc" name="PI3K_Inh_circ_conc" compartment="Blood" initialConcentration="0" boundaryCondition="true" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">The free concentration of PI3K inhibitor in the blood, in ng/ml.</body>
+        </notes>
+      </species>
+      <species id="Neutro_circ" name="Neutro_circ" compartment="Blood" initialConcentration="0.999999999999998" boundaryCondition="true" constant="true"/>
+      <species id="PI3Kg_Neutro_circ" name="PI3Kg_Neutro_circ" compartment="Blood" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kinh_circ" name="PI3Kinh_circ" compartment="Blood" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="PI3Kg_nTreg_circ" name="PI3Kg_nTreg_circ" compartment="Blood" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_T_quies_circ" name="PI3Kg_T_quies_circ" compartment="Blood" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3Kg_APC_circ" name="PI3Kg_APC_circ" compartment="Blood" initialConcentration="1" boundaryCondition="true" constant="false"/>
+      <species id="PI3K_Inh_circ_total" name="PI3K_Inh_circ_total" compartment="Blood" initialConcentration="0" boundaryCondition="true" constant="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">The total concentration, bound + unbound, of PI3K inhibitor in the blood, in ng/ml</body>
+        </notes>
+      </species>
+      <species id="PI3Kinh_gi" name="PI3Kinh_gi" compartment="GI" initialConcentration="0" boundaryCondition="false" constant="false"/>
+      <species id="PI3Kinh_periph" name="PI3Kinh_periph" compartment="Peripheral" initialConcentration="0" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="Tquies_per_APC_diff" name="Tquies_per_APC_diff" value="1" constant="true"/>
+      <parameter id="TEff_per_APC_activation" name="TEff_per_APC_activation" value="10" constant="true"/>
+      <parameter id="Treg_per_APC_activation" name="Treg_per_APC_activation" value="10" constant="true"/>
+      <parameter id="TEff_per_APC_prolif" name="TEff_per_APC_prolif" value="5" constant="true"/>
+      <parameter id="Treg_per_APC_prolif" name="Treg_per_APC_prolif" value="5" constant="true"/>
+      <parameter id="Epi_imm_qual_weight" name="Epi_imm_qual_weight" value="0.6" constant="true"/>
+      <parameter id="Epi_Cell_act_weight" name="Epi_Cell_act_weight" value="0.3" constant="true"/>
+      <parameter id="Epi_quies_qual_weight" name="Epi_quies_qual_weight" value="1.2" constant="true"/>
+      <parameter id="PI3Kinh_PI3Ka_IC50" name="PI3Kinh_PI3Ka_IC50" value="0.13" constant="true"/>
+      <parameter id="PI3Kinh_PI3Ka_Imax" name="PI3Kinh_PI3Ka_Imax" value="1" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kb_IC50" name="PI3Kinh_PI3Kb_IC50" value="4" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kb_Imax" name="PI3Kinh_PI3Kb_Imax" value="1" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kg_IC50" name="PI3Kinh_PI3Kg_IC50" value="0.45" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kg_Imax" name="PI3Kinh_PI3Kg_Imax" value="1" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kd_IC50" name="PI3Kinh_PI3Kd_IC50" value="0.055" constant="true"/>
+      <parameter id="PI3Kinh_PI3Kd_Imax" name="PI3Kinh_PI3Kd_Imax" value="1" constant="true"/>
+      <parameter id="Epi_Qual_Colitis_w" name="Epi_Qual_Colitis_w" value="0.2" constant="true"/>
+      <parameter id="Inflam_Colitis_w" name="Inflam_Colitis_w" value="0.0037" constant="true"/>
+      <parameter id="Epi_imm_diff_rate_k" name="Epi_imm_diff_rate_k" value="0.00894021150399669" constant="true"/>
+      <parameter id="PI3Ka_ECimm_diff_EC50" name="PI3Ka_ECimm_diff_EC50" value="1" constant="true"/>
+      <parameter id="PI3Ka_ECimm_diff_Emax" name="PI3Ka_ECimm_diff_Emax" value="0.564893527846705" constant="true"/>
+      <parameter id="APC_recruitment_rate_k" name="APC_recruitment_rate_k" value="0.17" constant="true"/>
+      <parameter id="InfCK_APC_recruit_EC50" name="InfCK_APC_recruit_EC50" value="1" constant="true"/>
+      <parameter id="InfCK_APC_recruit_Emax" name="InfCK_APC_recruit_Emax" value="20" constant="true"/>
+      <parameter id="PI3Kg_APC_recruit_EC50" name="PI3Kg_APC_recruit_EC50" value="1" constant="true"/>
+      <parameter id="PI3Kg_APC_recruit_Emax" name="PI3Kg_APC_recruit_Emax" value="1.13619464237831" constant="true"/>
+      <parameter id="TEffCK_APC_recruit_EC50" name="TEffCK_APC_recruit_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_APC_recruit_Emax" name="TEffCK_APC_recruit_Emax" value="20" constant="true"/>
+      <parameter id="InfCK_Tquies_recruit_EC50" name="InfCK_Tquies_recruit_EC50" value="1" constant="true"/>
+      <parameter id="InfCK_Tquies_recruit_Emax" name="InfCK_Tquies_recruit_Emax" value="3" constant="true"/>
+      <parameter id="PI3Kg_Tquies_recruit_EC50" name="PI3Kg_Tquies_recruit_EC50" value="0.1" constant="true"/>
+      <parameter id="PI3Kg_Tquies_recruit_Emax" name="PI3Kg_Tquies_recruit_Emax" value="1.41490363521253" constant="true"/>
+      <parameter id="TEffCK_Tquies_recruit_EC50" name="TEffCK_Tquies_recruit_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_Tquies_recruit_Emax" name="TEffCK_Tquies_recruit_Emax" value="3" constant="true"/>
+      <parameter id="Tquies_recruitment_rate_k" name="Tquies_recruitment_rate_k" value="0.5" constant="true"/>
+      <parameter id="APC_activation_rate_k" name="APC_activation_rate_k" value="0.0113778992440558" constant="true"/>
+      <parameter id="Treg_APC_act_Imax" name="Treg_APC_act_Imax" value="0.9" constant="true"/>
+      <parameter id="Treg_APC_act_IC50" name="Treg_APC_act_IC50" value="20" constant="true"/>
+      <parameter id="APCact_IL10_prod_rate_k" name="APCact_IL10_prod_rate_k" value="0.00625563592210924" constant="true"/>
+      <parameter id="PI3Kd_APCIL10_prod_rate_EC50" name="PI3Kd_APCIL10_prod_rate_EC50" value="1" constant="true"/>
+      <parameter id="PI3Kd_APCIL10_prod_rate_Emax" name="PI3Kd_APCIL10_prod_rate_Emax" value="6.82959355763183" constant="true"/>
+      <parameter id="Treg_IL10_prod_rate_k" name="Treg_IL10_prod_rate_k" value="0.03" constant="true"/>
+      <parameter id="APCact_IL12_prod_rate_k" name="APCact_IL12_prod_rate_k" value="0.0222405101780387" constant="true"/>
+      <parameter id="PI3Kd_APCIL12_prod_rate_Imax" name="PI3Kd_APCIL12_prod_rate_Imax" value="0.755206215934701" constant="true"/>
+      <parameter id="PI3Kd_APCIL12_prod_rate_IC50" name="PI3Kd_APCIL12_prod_rate_IC50" value="1" constant="true"/>
+      <parameter id="PI3Kg_TEff_activation_EC50" name="PI3Kg_TEff_activation_EC50" value="1.25386542851588" constant="true"/>
+      <parameter id="PI3Kg_TEff_activation_Emax" name="PI3Kg_TEff_activation_Emax" value="0.820344761977522" constant="true"/>
+      <parameter id="TEffCK_TEff_activation_EC50" name="TEffCK_TEff_activation_EC50" value="0.5" constant="true"/>
+      <parameter id="TEffCK_TEff_activation_Emax" name="TEffCK_TEff_activation_Emax" value="20" constant="true"/>
+      <parameter id="T_Eff_act_rate_k" name="T_Eff_act_rate_k" value="8.69334077659471e-05" constant="true"/>
+      <parameter id="IL10_Treg_activation_EC50" name="IL10_Treg_activation_EC50" value="0.5" constant="true"/>
+      <parameter id="IL10_Treg_activation_Emax" name="IL10_Treg_activation_Emax" value="20" constant="true"/>
+      <parameter id="PI3Kd_Treg_activation_EC50" name="PI3Kd_Treg_activation_EC50" value="0.751230123129532" constant="true"/>
+      <parameter id="PI3Kd_Treg_activation_Emax" name="PI3Kd_Treg_activation_Emax" value="2" constant="true"/>
+      <parameter id="Treg_act_rate_k" name="Treg_act_rate_k" value="4.6232578908653e-05" constant="true"/>
+      <parameter id="PI3Kd_TEff_prolif_EC50" name="PI3Kd_TEff_prolif_EC50" value="4.31154577607786" constant="true"/>
+      <parameter id="PI3Kd_TEff_prolif_Emax" name="PI3Kd_TEff_prolif_Emax" value="0.52438422077144" constant="true"/>
+      <parameter id="PI3Kg_TEff_prolif_EC50" name="PI3Kg_TEff_prolif_EC50" value="1.13736944199959" constant="true"/>
+      <parameter id="PI3Kg_TEff_prolif_Emax" name="PI3Kg_TEff_prolif_Emax" value="1.34527665764249" constant="true"/>
+      <parameter id="TEffCK_TEff_prolif_EC50" name="TEffCK_TEff_prolif_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_TEff_prolif_Emax" name="TEffCK_TEff_prolif_Emax" value="20" constant="true"/>
+      <parameter id="T_Eff_prolif_rate_k" name="T_Eff_prolif_rate_k" value="3.35425936860627e-05" constant="true"/>
+      <parameter id="IL_10_clearance_rate_k" name="IL_10_clearance_rate_k" value="2.77258872223978" constant="true"/>
+      <parameter id="IL_12_clearance_rate_k" name="IL_12_clearance_rate_k" value="2.77258872223978" constant="true"/>
+      <parameter id="TEffAct_clearance_rate_k" name="TEffAct_clearance_rate_k" value="0.008" constant="true"/>
+      <parameter id="TEffCK_prod_rate_k" name="TEffCK_prod_rate_k" value="0.0305366924273503" constant="true"/>
+      <parameter id="T_eff_CK_clear_rate_k" name="T_eff_CK_clear_rate_k" value="1.08052900432249" constant="true"/>
+      <parameter id="IL10_TEff_diff_IC50" name="IL10_TEff_diff_IC50" value="1" constant="true"/>
+      <parameter id="IL10_TEff_diff_Imax" name="IL10_TEff_diff_Imax" value="0.5" constant="true"/>
+      <parameter id="IL12_TEff_diff_EC50" name="IL12_TEff_diff_EC50" value="1" constant="true"/>
+      <parameter id="IL12_TEff_diff_Emax" name="IL12_TEff_diff_Emax" value="20" constant="true"/>
+      <parameter id="PI3Kd_TEff_diff_EC50" name="PI3Kd_TEff_diff_EC50" value="8.88571478555249" constant="true"/>
+      <parameter id="PI3Kd_TEff_diff_Emax" name="PI3Kd_TEff_diff_Emax" value="0.561160295339814" constant="true"/>
+      <parameter id="PI3Kg_TEff_diff_EC50" name="PI3Kg_TEff_diff_EC50" value="1.40286466272979" constant="true"/>
+      <parameter id="PI3Kg_TEff_diff_Emax" name="PI3Kg_TEff_diff_Emax" value="0.88478588448661" constant="true"/>
+      <parameter id="T_Eff_diff_rate_k" name="T_Eff_diff_rate_k" value="0.00023304" constant="true"/>
+      <parameter id="Treg_diff_rate_k" name="Treg_diff_rate_k" value="3.90075e-05" constant="true"/>
+      <parameter id="IL10_Treg_diff_EC50" name="IL10_Treg_diff_EC50" value="1" constant="true"/>
+      <parameter id="IL10_Treg_diff_Emax" name="IL10_Treg_diff_Emax" value="20" constant="true"/>
+      <parameter id="IL12_Treg_diff_IC50" name="IL12_Treg_diff_IC50" value="1" constant="true"/>
+      <parameter id="IL12_Treg_diff_Imax" name="IL12_Treg_diff_Imax" value="0.5" constant="true"/>
+      <parameter id="PI3Kd_Treg_diff_EC50" name="PI3Kd_Treg_diff_EC50" value="1.3" constant="true"/>
+      <parameter id="PI3Kd_Treg_diff_Emax" name="PI3Kd_Treg_diff_Emax" value="1.67783410475377" constant="true"/>
+      <parameter id="PI3Kg_Treg_diff_EC50" name="PI3Kg_Treg_diff_EC50" value="1.7" constant="true"/>
+      <parameter id="PI3Kg_Treg_diff_Emax" name="PI3Kg_Treg_diff_Emax" value="3.08" constant="true"/>
+      <parameter id="Epi_proliferation_rate_k" name="Epi_proliferation_rate_k" value="0.00252868493240006" constant="true"/>
+      <parameter id="PI3Kb_EC_prolif_EC50" name="PI3Kb_EC_prolif_EC50" value="0.0988952573346729" constant="true"/>
+      <parameter id="PI3Kb_EC_prolif_Emax" name="PI3Kb_EC_prolif_Emax" value="0.126986089234562" constant="true"/>
+      <parameter id="PI3Ka_ECquies_apop_Imax" name="PI3Ka_ECquies_apop_Imax" value="0.39434915324126" constant="true"/>
+      <parameter id="PI3Ka_ECquies_apop_IC50" name="PI3Ka_ECquies_apop_IC50" value="0.929624430245905" constant="true"/>
+      <parameter id="Epi_quies_apoptosis_rate_k" name="Epi_quies_apoptosis_rate_k" value="0.008" constant="true"/>
+      <parameter id="PI3Ka_ECimm_apop_IC50" name="PI3Ka_ECimm_apop_IC50" value="1" constant="true"/>
+      <parameter id="PI3Ka_ECimm_apop_Imax" name="PI3Ka_ECimm_apop_Imax" value="0.396268940942782" constant="true"/>
+      <parameter id="Epi_imm_apoptosis_rate_k" name="Epi_imm_apoptosis_rate_k" value="0.000943955136410654" constant="true"/>
+      <parameter id="APCact_clearance_rate_k" name="APCact_clearance_rate_k" value="0.0289" constant="true"/>
+      <parameter id="APCinact_clearance_rate_k" name="APCinact_clearance_rate_k" value="0.002" constant="true"/>
+      <parameter id="Tquies_clearance_rate_k" name="Tquies_clearance_rate_k" value="0.0015" constant="true"/>
+      <parameter id="TEffInact_clearance_rate_k" name="TEffInact_clearance_rate_k" value="0.00181019799241376" constant="true"/>
+      <parameter id="TRegInact_clearance_rate_k" name="TRegInact_clearance_rate_k" value="0.001" constant="true"/>
+      <parameter id="TRegAct_clearance_rate_k" name="TRegAct_clearance_rate_k" value="0.008" constant="true"/>
+      <parameter id="IL10_Treg_prolif_EC50" name="IL10_Treg_prolif_EC50" value="1" constant="true"/>
+      <parameter id="IL10_Treg_prolif_Emax" name="IL10_Treg_prolif_Emax" value="20" constant="true"/>
+      <parameter id="Treg_prolif_rate_k" name="Treg_prolif_rate_k" value="1.06593915405929e-05" constant="true"/>
+      <parameter id="InfCK_nTreg_recruit_EC50" name="InfCK_nTreg_recruit_EC50" value="1" constant="true"/>
+      <parameter id="InfCK_nTreg_recruit_Emax" name="InfCK_nTreg_recruit_Emax" value="20" constant="true"/>
+      <parameter id="TEffCK_nTreg_recruit_EC50" name="TEffCK_nTreg_recruit_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_nTreg_recruit_Emax" name="TEffCK_nTreg_recruit_Emax" value="20" constant="true"/>
+      <parameter id="nTreg_recruitment_rate_k" name="nTreg_recruitment_rate_k" value="0.00100724101465352" constant="true"/>
+      <parameter id="nTreg_production_rate_k" name="nTreg_production_rate_k" value="0.00468188129085147" constant="true"/>
+      <parameter id="TEffCK_EC_act_Emax" name="TEffCK_EC_act_Emax" value="15" constant="true"/>
+      <parameter id="InfCK_EC_act_Emax" name="InfCK_EC_act_Emax" value="8.52525922198794" constant="true"/>
+      <parameter id="InfCK_EC_act_EC50" name="InfCK_EC_act_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_EC_act_diff_EC50" name="TEffCK_EC_act_diff_EC50" value="1" constant="true"/>
+      <parameter id="Epi_act_rate_k" name="Epi_act_rate_k" value="0.000458174761895333" constant="true"/>
+      <parameter id="APCinfCK_prod_rate_k" name="APCinfCK_prod_rate_k" value="0.00750768900776565" constant="true"/>
+      <parameter id="Inf_CK_clearance_rate_k" name="Inf_CK_clearance_rate_k" value="2.47871792267372" constant="true"/>
+      <parameter id="Epi_act_apoptosis_rate_k" name="Epi_act_apoptosis_rate_k" value="0.062084354119362" constant="true"/>
+      <parameter id="PI3Ka_ECact_apop_Imax" name="PI3Ka_ECact_apop_Imax" value="0.616115460578154" constant="true"/>
+      <parameter id="PI3Ka_ECact_apop_IC50" name="PI3Ka_ECact_apop_IC50" value="0.826440718111831" constant="true"/>
+      <parameter id="nTreg_circ_clearance_rate_k" name="nTreg_circ_clearance_rate_k" value="0.002" constant="true"/>
+      <parameter id="PI3Kd_nTreg_prod_EC50" name="PI3Kd_nTreg_prod_EC50" value="0.801891818641922" constant="true"/>
+      <parameter id="PI3Kd_nTreg_prod_Emax" name="PI3Kd_nTreg_prod_Emax" value="5.84799211927754" constant="true"/>
+      <parameter id="ECact_ECprolif_Emax" name="ECact_ECprolif_Emax" value="1.5" constant="true"/>
+      <parameter id="Neutro_clearance_rate_k" name="Neutro_clearance_rate_k" value="0.0214374882872917" constant="true"/>
+      <parameter id="InfCK_Neutro_recruit_EC50" name="InfCK_Neutro_recruit_EC50" value="0.4691525220113" constant="true"/>
+      <parameter id="InfCK_Neutro_recruit_Emax" name="InfCK_Neutro_recruit_Emax" value="80" constant="true"/>
+      <parameter id="Neutro_recruitment_rate_k" name="Neutro_recruitment_rate_k" value="0.07" constant="true"/>
+      <parameter id="TEffCK_Neutro_recruit_EC50" name="TEffCK_Neutro_recruit_EC50" value="1" constant="true"/>
+      <parameter id="TEffCK_Neutro_recruit_Emax" name="TEffCK_Neutro_recruit_Emax" value="10" constant="true"/>
+      <parameter id="Neutro_EC_act_EC50" name="Neutro_EC_act_EC50" value="50" constant="true"/>
+      <parameter id="Neutro_EC_act_Emax" name="Neutro_EC_act_Emax" value="1.0504829530577" constant="true"/>
+      <parameter id="PI3Kg_Neutro_recruit_EC50" name="PI3Kg_Neutro_recruit_EC50" value="1.57453775992973" constant="true"/>
+      <parameter id="PI3Kg_Neutro_recruit_Emax" name="PI3Kg_Neutro_recruit_Emax" value="0.71633733240304" constant="true"/>
+      <parameter id="PI3Kg_nTreg_recruit_EC50" name="PI3Kg_nTreg_recruit_EC50" value="0.1" constant="true"/>
+      <parameter id="PI3Kg_nTreg_recruit_Emax" name="PI3Kg_nTreg_recruit_Emax" value="1.28371102361556" constant="true"/>
+      <parameter id="EQ_APC_act_IC50" name="EQ_APC_act_IC50" value="0.355233577618001" constant="true"/>
+      <parameter id="EQ_APC_act_Imax" name="EQ_APC_act_Imax" value="1" constant="true"/>
+      <parameter id="EQ_APC_act_nH" name="EQ_APC_act_nH" value="5" constant="true"/>
+      <parameter id="InfCK_APC_act_EC50" name="InfCK_APC_act_EC50" value="1" constant="true"/>
+      <parameter id="InfCK_APC_act_Emax" name="InfCK_APC_act_Emax" value="20" constant="true"/>
+      <parameter id="ECact_ECprolif_EC50" name="ECact_ECprolif_EC50" value="0.0139359551475164" constant="true"/>
+      <parameter id="APC_TEff_diff_Emax" name="APC_TEff_diff_Emax" value="1" constant="true"/>
+      <parameter id="APC_Treg_diff_Emax" name="APC_Treg_diff_Emax" value="1" constant="true"/>
+      <parameter id="APC_TEff_prolif_Emax" name="APC_TEff_prolif_Emax" value="1" constant="true"/>
+      <parameter id="APC_TEff_act_Emax" name="APC_TEff_act_Emax" value="1" constant="true"/>
+      <parameter id="APC_Treg_prolif_Emax" name="APC_Treg_prolif_Emax" value="1" constant="true"/>
+      <parameter id="APC_Treg_act_Emax" name="APC_Treg_act_Emax" value="1" constant="true"/>
+      <parameter id="NeutroInfCK_prod_rate_k" name="NeutroInfCK_prod_rate_k" value="0.00430997340027274" constant="true"/>
+      <parameter id="InfCK_TEff_prolif_EC50" name="InfCK_TEff_prolif_EC50" value="1" constant="true"/>
+      <parameter id="InfCK_TEff_prolif_Emax" name="InfCK_TEff_prolif_Emax" value="20" constant="true"/>
+      <parameter id="InfCK_TEff_activation_EC50" name="InfCK_TEff_activation_EC50" value="0.5" constant="true"/>
+      <parameter id="InfCK_TEff_activation_Emax" name="InfCK_TEff_activation_Emax" value="20" constant="true"/>
+      <parameter id="PI3Kinh_partition" name="PI3Kinh_partition" value="0.5" constant="true"/>
+      <parameter id="PI3Kinh_Ka" name="PI3Kinh_Ka" value="0.7" constant="true"/>
+      <parameter id="PI3Kinh_CL" name="PI3Kinh_CL" value="5" constant="true"/>
+      <parameter id="PI3Kinh_Vc" name="PI3Kinh_Vc" value="200" constant="true"/>
+      <parameter id="PI3Kinh_Q" name="PI3Kinh_Q" value="10" constant="true"/>
+      <parameter id="PI3Kinh_Vp" name="PI3Kinh_Vp" value="50" constant="true"/>
+      <parameter id="PI3Kinh_lag" name="PI3Kinh_lag" value="0.2" constant="true"/>
+      <parameter id="PI3Kinh_duration" name="PI3Kinh_duration" value="0.1" constant="true"/>
+      <parameter id="PI3Kinh_F" name="PI3Kinh_F" value="1" constant="true"/>
+      <parameter id="Epi_act_event_dur" name="Epi_act_event_dur" value="0.1" constant="true"/>
+      <parameter id="Epi_act_event_lag" name="Epi_act_event_lag" value="0.2" constant="true"/>
+      <parameter id="Treg_TEff_prolif_IC50" name="Treg_TEff_prolif_IC50" value="0.1" constant="true"/>
+      <parameter id="Treg_TEff_prolif_Imax" name="Treg_TEff_prolif_Imax" value="0.7" constant="true"/>
+      <parameter id="PI3Kg_Treg_prolif_EC50" name="PI3Kg_Treg_prolif_EC50" value="0.543467756334803" constant="true"/>
+      <parameter id="PI3Kg_Treg_prolif_Emax" name="PI3Kg_Treg_prolif_Emax" value="0.472317292622612" constant="true"/>
+      <parameter id="PI3Kg_Treg_activation_EC50" name="PI3Kg_Treg_activation_EC50" value="0.5" constant="true"/>
+      <parameter id="PI3Kg_Treg_activation_Emax" name="PI3Kg_Treg_activation_Emax" value="0.3" constant="true"/>
+      <parameter id="Treg_TEff_act_IC50" name="Treg_TEff_act_IC50" value="0.1" constant="true"/>
+      <parameter id="Treg_TEff_act_Imax" name="Treg_TEff_act_Imax" value="0.7" constant="true"/>
+      <parameter id="PI3Kinh_bound_fraction" name="PI3Kinh_bound_fraction" value="0.76" constant="true"/>
+      <parameter id="InfCK_Neutro_recruit_nH" name="InfCK_Neutro_recruit_nH" value="2.2314" constant="true"/>
+      <parameter id="Act_event_clear_rate_k" name="Act_event_clear_rate_k" value="0.1" constant="true"/>
+      <parameter id="PI3Kd_TEff_activation_EC50" name="PI3Kd_TEff_activation_EC50" value="9.71029728718175" constant="true"/>
+      <parameter id="PI3Kd_TEff_activation_Emax" name="PI3Kd_TEff_activation_Emax" value="0.433829033562852" constant="true"/>
+      <parameter id="PI3Kd_Treg_prolif_EC50" name="PI3Kd_Treg_prolif_EC50" value="1.07480678398012" constant="true"/>
+      <parameter id="PI3Kd_Treg_prolif_Emax" name="PI3Kd_Treg_prolif_Emax" value="1.67169433642349" constant="true"/>
+      <parameter id="PI3Ka_EC_prolif_EC50" name="PI3Ka_EC_prolif_EC50" value="0.01" constant="true"/>
+      <parameter id="PI3Ka_EC_prolif_Emax" name="PI3Ka_EC_prolif_Emax" value="0.844292523963612" constant="true"/>
+      <parameter id="kEC_activation" name="kEC_activation" value="0.0006" constant="true"/>
+      <parameter id="kEC_formation" name="kEC_formation" value="0.00684412356831802" constant="true"/>
+      <parameter id="Tact_GI" name="Tact_GI" value="150" constant="true"/>
+      <parameter id="APCact_GI" name="APCact_GI" value="250" constant="true"/>
+      <parameter id="neutroGI" name="neutroGI" value="250" constant="true"/>
+      <parameter id="threshold" name="threshold" value="0.25" constant="true"/>
+      <parameter id="k_healing" name="k_healing" value="0.05" constant="true"/>
+      <parameter id="GI_risk_evaluated" name="GI_risk_evaluated" value="1" constant="false"/>
+      <parameter id="ModelValue_185" name="Initial for threshold" value="0.25">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="threshold" type="InitialValue"/>
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="ModelValue_185">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> threshold </ci>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="totalAPCs">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> APC_inact </ci>
+            <ci> APC_act </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="totalTregs">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> Treg_inact </ci>
+            <ci> Treg_act </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3K_Inh_Tissue_SS">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> PI3K_Inh_Tissue_AUC </ci>
+            <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Epithelial_Quality">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <ci> MIN </ci>
+            <cn> 1 </cn>
+            <apply>
+              <plus/>
+              <ci> EChealthy </ci>
+              <apply>
+                <times/>
+                <cn> 0.2 </cn>
+                <ci> ECact </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="APC_Demand">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <divide/>
+              <ci> T_quies </ci>
+              <ci> Tquies_per_APC_diff </ci>
+            </apply>
+            <apply>
+              <divide/>
+              <ci> T_Eff_inact </ci>
+              <ci> TEff_per_APC_activation </ci>
+            </apply>
+            <apply>
+              <divide/>
+              <ci> Treg_inact </ci>
+              <ci> Treg_per_APC_activation </ci>
+            </apply>
+            <apply>
+              <divide/>
+              <ci> T_Eff_inact </ci>
+              <ci> TEff_per_APC_prolif </ci>
+            </apply>
+            <apply>
+              <divide/>
+              <ci> Treg_inact </ci>
+              <ci> Treg_per_APC_prolif </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="GI_Risk_Score">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> Epi_Qual_Colitis_w </ci>
+              <apply>
+                <minus/>
+                <cn> 1 </cn>
+                <ci> Epithelial_Quality </ci>
+              </apply>
+            </apply>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <cn> 1 </cn>
+                  <ci> Epi_Qual_Colitis_w </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <ci> T_Eff_act </ci>
+                    <ci> Tact_GI </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> APC_act </ci>
+                    <ci> APCact_GI </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> Neutrophils </ci>
+                    <ci> neutroGI </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <cn> 3 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="GI_risk_evaluated">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <piecewise>
+            <piece>
+              <cn> 1 </cn>
+              <apply>
+                <lt/>
+                <ci> GI_Risk_Score </ci>
+                <ci> ModelValue_185 </ci>
+              </apply>
+            </piece>
+            <otherwise>
+              <cn> 0 </cn>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="totalCD4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <ci> T_Eff_inact </ci>
+            <ci> T_Eff_act </ci>
+            <ci> T_quies </ci>
+            <ci> totalTregs </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3K_Inh_circ_total">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> PI3Kinh_circ </ci>
+              <cn> 1000000 </cn>
+            </apply>
+            <apply>
+              <times/>
+              <ci> PI3Kinh_Vc </ci>
+              <cn> 1000 </cn>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3K_Inh_circ_conc">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_circ </ci>
+                <cn> 1000000 </cn>
+              </apply>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_Vc </ci>
+                <cn> 1000 </cn>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <cn> 1 </cn>
+              <ci> PI3Kinh_bound_fraction </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kd_Treg_circ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kd_Imax </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kd_IC50 </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3K_Inhibitor">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> PI3Kinh_partition </ci>
+            <ci> PI3K_Inh_circ_conc </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Ka_APC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Ka_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Ka_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kb_EC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kb_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kb_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kb_T_quies">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kb_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kb_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Ka_T_quies">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Ka_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Ka_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Ka_Treg">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Ka_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Ka_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_T_Eff">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_EC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_APC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kb_Treg">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kb_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kb_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_T_quies">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kb_APC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kb_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kb_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_Neutro">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_Treg">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kb_T_Eff">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kb_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kb_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Ka_T_Eff">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Ka_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Ka_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Ka_EC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Ka_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Ka_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kd_T_Eff">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kd_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kd_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kd_APC">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kd_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kd_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kd_T_quies">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kd_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kd_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kd_Treg">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kd_Imax </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kd_IC50 </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_T_quies_circ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_APC_circ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_Neutro_circ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="PI3Kg_nTreg_circ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 1 </cn>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> PI3Kinh_PI3Kg_Imax </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> PI3Kinh_PI3Kg_IC50 </ci>
+                <ci> PI3K_Inh_circ_conc </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="APC_recruitment" name="APC_recruitment" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_circ" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_APC_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="APC_inact" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_APC_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_APC_recruitment </ci>
+              <ci> APC_circ </ci>
+              <ci> APC_recruitment_rate_k </ci>
+              <ci> InfCK_APC_recruit_EC50 </ci>
+              <ci> InfCK_APC_recruit_Emax </ci>
+              <ci> Inf_CKs </ci>
+              <ci> PI3Kg_APC_circ </ci>
+              <ci> PI3Kg_APC_recruit_EC50 </ci>
+              <ci> PI3Kg_APC_recruit_Emax </ci>
+              <ci> TEffCK_APC_recruit_EC50 </ci>
+              <ci> TEffCK_APC_recruit_Emax </ci>
+              <ci> T_Eff_CKs </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_cell_recruitment" name="T_cell_recruitment" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_quies_circ" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="T_quies" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_T_cell_recruitment </ci>
+              <ci> InfCK_Tquies_recruit_EC50 </ci>
+              <ci> InfCK_Tquies_recruit_Emax </ci>
+              <ci> Inf_CKs </ci>
+              <ci> PI3Kg_T_quies_circ </ci>
+              <ci> PI3Kg_Tquies_recruit_EC50 </ci>
+              <ci> PI3Kg_Tquies_recruit_Emax </ci>
+              <ci> TEffCK_Tquies_recruit_EC50 </ci>
+              <ci> TEffCK_Tquies_recruit_Emax </ci>
+              <ci> T_Eff_CKs </ci>
+              <ci> T_quies_circ </ci>
+              <ci> Tquies_recruitment_rate_k </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APC_activation_rate" name="APC_activation_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_inact" stoichiometry="1"/>
+          <speciesReference species="Epithelial_Quality" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="Epithelial_Quality" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_APC_activation_rate </ci>
+                <ci> APC_activation_rate_k </ci>
+                <ci> APC_inact </ci>
+                <ci> EQ_APC_act_IC50 </ci>
+                <ci> EQ_APC_act_Imax </ci>
+                <ci> EQ_APC_act_nH </ci>
+                <ci> Epithelial_Quality </ci>
+                <ci> InfCK_APC_act_EC50 </ci>
+                <ci> InfCK_APC_act_Emax </ci>
+                <ci> Inf_CKs </ci>
+                <ci> Mucosa </ci>
+                <ci> Treg_APC_act_IC50 </ci>
+                <ci> Treg_APC_act_Imax </ci>
+                <ci> Treg_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IL_10_production_rate" name="IL-10_production rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_APC" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_APC" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_IL_10_production_rate </ci>
+                <ci> APC_act </ci>
+                <ci> APCact_IL10_prod_rate_k </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_APC </ci>
+                <ci> PI3Kd_APCIL10_prod_rate_EC50 </ci>
+                <ci> PI3Kd_APCIL10_prod_rate_Emax </ci>
+                <ci> Treg_IL10_prod_rate_k </ci>
+                <ci> Treg_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IL_12_production_rate" name="IL-12_production_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_APC" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_APC" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_IL_12_production_rate </ci>
+                <ci> APC_act </ci>
+                <ci> APCact_IL12_prod_rate_k </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_APC </ci>
+                <ci> PI3Kd_APCIL12_prod_rate_IC50 </ci>
+                <ci> PI3Kd_APCIL12_prod_rate_Imax </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_Eff_activation_rate" name="T_Eff_activation_rate" reversible="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">Sasaki 2000: In PI3Kgamma KO mice, reduced activation of mature T cells.</body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="T_Eff_inact" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_Eff" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_Eff" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="T_Eff_act" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_Eff" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_Eff" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_Eff_activation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_TEff_act_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> InfCK_TEff_activation_EC50 </ci>
+                <ci> InfCK_TEff_activation_Emax </ci>
+                <ci> Inf_CKs </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_TEff_activation_EC50 </ci>
+                <ci> PI3Kd_TEff_activation_Emax </ci>
+                <ci> PI3Kd_T_Eff </ci>
+                <ci> PI3Kg_TEff_activation_EC50 </ci>
+                <ci> PI3Kg_TEff_activation_Emax </ci>
+                <ci> PI3Kg_T_Eff </ci>
+                <ci> TEffCK_TEff_activation_EC50 </ci>
+                <ci> TEffCK_TEff_activation_Emax </ci>
+                <ci> TEff_per_APC_activation </ci>
+                <ci> T_Eff_CKs </ci>
+                <ci> T_Eff_act_rate_k </ci>
+                <ci> T_Eff_inact </ci>
+                <ci> Treg_TEff_act_IC50 </ci>
+                <ci> Treg_TEff_act_Imax </ci>
+                <ci> Treg_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Treg_activation_rate" name="Treg_activation_rate" reversible="false">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">Patton 2006: PI3Kdelta regulates suppression of Th cells by Tregs.  Suggests that Tregs are not fully &quot;activated&quot; to do their suppressive job.  IL-10 secretion is also impaired.
+</body>
+        </notes>
+        <listOfReactants>
+          <speciesReference species="Treg_inact" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_Treg" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Treg" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_Treg" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Treg" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Treg_activation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_Treg_act_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> IL10_Treg_activation_EC50 </ci>
+                <ci> IL10_Treg_activation_Emax </ci>
+                <ci> IL_10 </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_Treg </ci>
+                <ci> PI3Kd_Treg_activation_EC50 </ci>
+                <ci> PI3Kd_Treg_activation_Emax </ci>
+                <ci> PI3Kg_Treg </ci>
+                <ci> PI3Kg_Treg_activation_EC50 </ci>
+                <ci> PI3Kg_Treg_activation_Emax </ci>
+                <ci> Treg_act_rate_k </ci>
+                <ci> Treg_inact </ci>
+                <ci> Treg_per_APC_activation </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_Eff_proliferation_rate" name="T_Eff_proliferation_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_Eff" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_Eff" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="T_Eff_inact" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_Eff" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_Eff" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_Eff_proliferation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_TEff_prolif_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> InfCK_TEff_prolif_EC50 </ci>
+                <ci> InfCK_TEff_prolif_Emax </ci>
+                <ci> Inf_CKs </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_TEff_prolif_EC50 </ci>
+                <ci> PI3Kd_TEff_prolif_Emax </ci>
+                <ci> PI3Kd_T_Eff </ci>
+                <ci> PI3Kg_TEff_prolif_EC50 </ci>
+                <ci> PI3Kg_TEff_prolif_Emax </ci>
+                <ci> PI3Kg_T_Eff </ci>
+                <ci> TEffCK_TEff_prolif_EC50 </ci>
+                <ci> TEffCK_TEff_prolif_Emax </ci>
+                <ci> TEff_per_APC_prolif </ci>
+                <ci> T_Eff_CKs </ci>
+                <ci> T_Eff_inact </ci>
+                <ci> T_Eff_prolif_rate_k </ci>
+                <ci> Treg_TEff_prolif_IC50 </ci>
+                <ci> Treg_TEff_prolif_Imax </ci>
+                <ci> Treg_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IL_10_clearance_rate" name="IL-10_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_IL_10_clearance_rate </ci>
+                <ci> IL_10 </ci>
+                <ci> IL_10_clearance_rate_k </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="IL_12_clearance_rate" name="IL-12_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_IL_12_clearance_rate </ci>
+                <ci> IL_12 </ci>
+                <ci> IL_12_clearance_rate_k </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_cell_clearance_rate" name="T_cell_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_Eff_act" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_cell_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> TEffAct_clearance_rate_k </ci>
+                <ci> T_Eff_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_eff_cytokine_production_rate" name="T_eff_cytokine_production_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_Eff_act" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_act" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_eff_cytokine_production_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> TEffCK_prod_rate_k </ci>
+                <ci> T_Eff_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_eff_cytokine_clearance_rate" name="T_eff_cytokine_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_eff_cytokine_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> T_Eff_CKs </ci>
+                <ci> T_eff_CK_clear_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_Eff_differentiation_rate" name="T_Eff_differentiation_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_quies" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_quies" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="T_Eff_inact" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_quies" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_Eff_differentiation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_TEff_diff_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> IL10_TEff_diff_IC50 </ci>
+                <ci> IL10_TEff_diff_Imax </ci>
+                <ci> IL12_TEff_diff_EC50 </ci>
+                <ci> IL12_TEff_diff_Emax </ci>
+                <ci> IL_10 </ci>
+                <ci> IL_12 </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_TEff_diff_EC50 </ci>
+                <ci> PI3Kd_TEff_diff_Emax </ci>
+                <ci> PI3Kd_T_quies </ci>
+                <ci> PI3Kg_TEff_diff_EC50 </ci>
+                <ci> PI3Kg_TEff_diff_Emax </ci>
+                <ci> PI3Kg_T_quies </ci>
+                <ci> T_Eff_diff_rate_k </ci>
+                <ci> T_quies </ci>
+                <ci> Tquies_per_APC_diff </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Treg_differentiation_rate" name="Treg_differentiation_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_quies" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_quies" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Treg_inact" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="IL_12" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_T_quies" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_T_quies" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Treg_differentiation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_Treg_diff_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> IL10_Treg_diff_EC50 </ci>
+                <ci> IL10_Treg_diff_Emax </ci>
+                <ci> IL12_Treg_diff_IC50 </ci>
+                <ci> IL12_Treg_diff_Imax </ci>
+                <ci> IL_10 </ci>
+                <ci> IL_12 </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_T_quies </ci>
+                <ci> PI3Kd_Treg_diff_EC50 </ci>
+                <ci> PI3Kd_Treg_diff_Emax </ci>
+                <ci> PI3Kg_T_quies </ci>
+                <ci> PI3Kg_Treg_diff_EC50 </ci>
+                <ci> PI3Kg_Treg_diff_Emax </ci>
+                <ci> T_quies </ci>
+                <ci> Tquies_per_APC_diff </ci>
+                <ci> Treg_diff_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APC_act_clearance_rate" name="APC_act_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_APC_act_clearance_rate </ci>
+                <ci> APC_act </ci>
+                <ci> APCact_clearance_rate_k </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="APC_inact_clearance_rate" name="APC_inact_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_inact" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_APC_inact_clearance_rate </ci>
+                <ci> APC_inact </ci>
+                <ci> APCinact_clearance_rate_k </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_quies_clearance_rate" name="T_quies_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_quies" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_quies_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> T_quies </ci>
+                <ci> Tquies_clearance_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="T_Eff_inact_clearance_rate" name="T_Eff_inact_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="T_Eff_inact" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_T_Eff_inact_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> TEffInact_clearance_rate_k </ci>
+                <ci> T_Eff_inact </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Treg_inact_clearance_rate" name="Treg_inact_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Treg_inact" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Treg_inact_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> TRegInact_clearance_rate_k </ci>
+                <ci> Treg_inact </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Treg_act_clearance_rate" name="Treg_act_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Treg_act" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Treg_act_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> TRegAct_clearance_rate_k </ci>
+                <ci> Treg_act </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Treg_proliferation_rate" name="Treg_proliferation_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Treg" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_Treg" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="IL_10" stoichiometry="1"/>
+          <speciesReference species="Treg_inact" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Treg" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_Treg" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="APC_Demand"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Treg_proliferation_rate </ci>
+                <ci> APC_Demand </ci>
+                <ci> APC_Treg_prolif_Emax </ci>
+                <ci> APC_act </ci>
+                <ci> IL10_Treg_prolif_EC50 </ci>
+                <ci> IL10_Treg_prolif_Emax </ci>
+                <ci> IL_10 </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Kd_Treg </ci>
+                <ci> PI3Kd_Treg_prolif_EC50 </ci>
+                <ci> PI3Kd_Treg_prolif_Emax </ci>
+                <ci> PI3Kg_Treg </ci>
+                <ci> PI3Kg_Treg_prolif_EC50 </ci>
+                <ci> PI3Kg_Treg_prolif_Emax </ci>
+                <ci> Treg_inact </ci>
+                <ci> Treg_per_APC_prolif </ci>
+                <ci> Treg_prolif_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nTreg_recruitment_rate" name="nTreg_recruitment_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="nTreg_circ" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_nTreg_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Treg_inact" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_nTreg_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_nTreg_recruitment_rate </ci>
+              <ci> InfCK_nTreg_recruit_EC50 </ci>
+              <ci> InfCK_nTreg_recruit_Emax </ci>
+              <ci> Inf_CKs </ci>
+              <ci> PI3Kg_nTreg_circ </ci>
+              <ci> PI3Kg_nTreg_recruit_EC50 </ci>
+              <ci> PI3Kg_nTreg_recruit_Emax </ci>
+              <ci> TEffCK_nTreg_recruit_EC50 </ci>
+              <ci> TEffCK_nTreg_recruit_Emax </ci>
+              <ci> T_Eff_CKs </ci>
+              <ci> nTreg_circ </ci>
+              <ci> nTreg_recruitment_rate_k </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nTreg_production_rate" name="nTreg_production_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PI3Kd_Treg_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nTreg_circ" stoichiometry="1"/>
+          <speciesReference species="PI3Kd_Treg_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Blood </ci>
+              <apply>
+                <ci> Function_for_nTreg_production_rate </ci>
+                <ci> Blood </ci>
+                <ci> PI3Kd_Treg_circ </ci>
+                <ci> PI3Kd_nTreg_prod_EC50 </ci>
+                <ci> PI3Kd_nTreg_prod_Emax </ci>
+                <ci> nTreg_production_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Inf_CK_production_rate" name="Inf_CK_production_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="Neutrophils" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="APC_act" stoichiometry="1"/>
+          <speciesReference species="Neutrophils" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Inf_CK_production_rate </ci>
+                <ci> APC_act </ci>
+                <ci> APCinfCK_prod_rate_k </ci>
+                <ci> Mucosa </ci>
+                <ci> NeutroInfCK_prod_rate_k </ci>
+                <ci> Neutrophils </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Inf_CK_clearance_rate" name="Inf_CK_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Inf_CK_clearance_rate </ci>
+                <ci> Inf_CK_clearance_rate_k </ci>
+                <ci> Inf_CKs </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nTreg_circ_clearance_Rate" name="nTreg_circ_clearance_Rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="nTreg_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Blood </ci>
+              <apply>
+                <ci> Function_for_nTreg_circ_clearance_Rate </ci>
+                <ci> Blood </ci>
+                <ci> nTreg_circ </ci>
+                <ci> nTreg_circ_clearance_rate_k </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Neutro_recruitment_rate" name="Neutro_recruitment_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Neutro_circ" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Neutro_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Neutrophils" stoichiometry="1"/>
+          <speciesReference species="T_Eff_CKs" stoichiometry="1"/>
+          <speciesReference species="Inf_CKs" stoichiometry="1"/>
+          <speciesReference species="PI3Kg_Neutro_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_Neutro_recruitment_rate </ci>
+              <ci> InfCK_Neutro_recruit_EC50 </ci>
+              <ci> InfCK_Neutro_recruit_Emax </ci>
+              <ci> InfCK_Neutro_recruit_nH </ci>
+              <ci> Inf_CKs </ci>
+              <ci> Neutro_circ </ci>
+              <ci> Neutro_recruitment_rate_k </ci>
+              <ci> PI3Kg_Neutro_circ </ci>
+              <ci> PI3Kg_Neutro_recruit_EC50 </ci>
+              <ci> PI3Kg_Neutro_recruit_Emax </ci>
+              <ci> TEffCK_Neutro_recruit_EC50 </ci>
+              <ci> TEffCK_Neutro_recruit_Emax </ci>
+              <ci> T_Eff_CKs </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Neutro_clearance_rate" name="Neutro_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Neutrophils" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Neutro_clearance_rate </ci>
+                <ci> Mucosa </ci>
+                <ci> Neutro_clearance_rate_k </ci>
+                <ci> Neutrophils </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PI3Ki_absorption_rate" name="PI3Ki_absorption_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PI3Kinh_gi" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PI3Kinh_circ" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_PI3Ki_absorption_rate </ci>
+              <ci> PI3Kinh_F </ci>
+              <ci> PI3Kinh_Ka </ci>
+              <ci> PI3Kinh_gi </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PI3Ki_clearance_rate" name="PI3Ki_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PI3Kinh_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Blood </ci>
+              <apply>
+                <ci> Function_for_PI3Ki_clearance_rate </ci>
+                <ci> Blood </ci>
+                <ci> PI3Kinh_CL </ci>
+                <ci> PI3Kinh_Vc </ci>
+                <ci> PI3Kinh_circ </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PI3Ki_periph_exchange_rate" name="PI3Ki_periph_exchange_rate" reversible="true">
+        <listOfReactants>
+          <speciesReference species="PI3Kinh_circ" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PI3Kinh_periph" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> Function_for_PI3Ki_periph_exchange_rate </ci>
+              <ci> PI3Kinh_Q </ci>
+              <ci> PI3Kinh_Vc </ci>
+              <ci> PI3Kinh_Vp </ci>
+              <ci> PI3Kinh_circ </ci>
+              <ci> PI3Kinh_periph </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PI3Ki_gi_elimination_rate" name="PI3Ki_gi_elimination_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PI3Kinh_gi" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> GI </ci>
+              <apply>
+                <ci> Function_for_PI3Ki_gi_elimination_rate </ci>
+                <ci> GI </ci>
+                <ci> PI3Kinh_F </ci>
+                <ci> PI3Kinh_Ka </ci>
+                <ci> PI3Kinh_gi </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Activating_event_clearance_rate" name="Activating_event_clearance_rate" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Activating_Event" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_Activating_event_clearance_rate </ci>
+                <ci> Act_event_clear_rate_k </ci>
+                <ci> Activating_Event </ci>
+                <ci> Mucosa </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="PI3K_inhibitor_AUC" name="PI3K_inhibitor_AUC" reversible="false">
+        <listOfReactants>
+          <speciesReference species="PI3K_Inhibitor" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="PI3K_Inh_Tissue_AUC" stoichiometry="1"/>
+          <speciesReference species="PI3K_Inhibitor" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_PI3K_inhibitor_AUC </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3K_Inhibitor </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ECactivation" name="ECactivation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EChealthy" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="ECact" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="T_Eff_CKs"/>
+          <modifierSpeciesReference species="Inf_CKs"/>
+          <modifierSpeciesReference species="Neutrophils"/>
+          <modifierSpeciesReference species="Activating_Event"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_ECactivation </ci>
+                <ci> Activating_Event </ci>
+                <ci> EChealthy </ci>
+                <ci> InfCK_EC_act_EC50 </ci>
+                <ci> InfCK_EC_act_Emax </ci>
+                <ci> Inf_CKs </ci>
+                <ci> Mucosa </ci>
+                <ci> Neutro_EC_act_EC50 </ci>
+                <ci> Neutro_EC_act_Emax </ci>
+                <ci> Neutrophils </ci>
+                <ci> TEffCK_EC_act_Emax </ci>
+                <ci> TEffCK_EC_act_diff_EC50 </ci>
+                <ci> T_Eff_CKs </ci>
+                <ci> kEC_activation </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ECformation" name="ECformation" reversible="false">
+        <listOfProducts>
+          <speciesReference species="EChealthy" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ECact"/>
+          <modifierSpeciesReference species="PI3Ka_EC"/>
+          <modifierSpeciesReference species="PI3Kb_EC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_ECformation </ci>
+                <ci> ECact </ci>
+                <ci> ECact_ECprolif_EC50 </ci>
+                <ci> ECact_ECprolif_Emax </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Ka_EC </ci>
+                <ci> PI3Ka_EC_prolif_EC50 </ci>
+                <ci> PI3Ka_EC_prolif_Emax </ci>
+                <ci> PI3Kb_EC </ci>
+                <ci> PI3Kb_EC_prolif_EC50 </ci>
+                <ci> PI3Kb_EC_prolif_Emax </ci>
+                <ci> kEC_formation </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="EChealthy_apoptosis" name="EChealthy_apoptosis" reversible="false">
+        <listOfReactants>
+          <speciesReference species="EChealthy" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PI3Ka_EC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_EChealthy_apoptosis </ci>
+                <ci> EChealthy </ci>
+                <ci> Epi_quies_apoptosis_rate_k </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Ka_EC </ci>
+                <ci> PI3Ka_ECquies_apop_IC50 </ci>
+                <ci> PI3Ka_ECquies_apop_Imax </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ECact_apoptosis" name="ECact_apoptosis" reversible="false">
+        <listOfReactants>
+          <speciesReference species="ECact" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="PI3Ka_EC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_ECact_apoptosis </ci>
+                <ci> ECact </ci>
+                <ci> Epi_act_apoptosis_rate_k </ci>
+                <ci> Mucosa </ci>
+                <ci> PI3Ka_EC </ci>
+                <ci> PI3Ka_ECact_apop_IC50 </ci>
+                <ci> PI3Ka_ECact_apop_Imax </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="insult" name="insult" reversible="false">
+        <listOfProducts>
+          <speciesReference species="RISK" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GI_Risk_Score"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_insult </ci>
+                <ci> GI_Risk_Score </ci>
+                <ci> Mucosa </ci>
+                <ci> k_healing </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="healing" name="healing" reversible="false">
+        <listOfReactants>
+          <speciesReference species="RISK" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GI_Risk_Score"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> Mucosa </ci>
+              <apply>
+                <ci> Function_for_healing </ci>
+                <ci> GI_risk_evaluated </ci>
+                <ci> RISK </ci>
+                <ci> k_healing </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="event" name="event">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <gt/>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+              <cn> 200 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="RISK">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 1 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>
