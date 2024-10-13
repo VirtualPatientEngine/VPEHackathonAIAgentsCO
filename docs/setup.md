@@ -101,7 +101,7 @@ VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate/main --> [TeamLeadAccount]/V
 > <font color=black>💡Tip</font><br>
 > 1. Use the `Scratch` folder for downloading large data files<br>
 > 2. Use the VS Code editor to launch the Ollama server, interact with Streamlit, coding, etc.<br>
-> 3. If you use a virtual envrionment, be sure to add the virtual environment directory to .gitingnore!<br>
+> 3. If you use a virtual envrionment, be sure to add the virtual environment directory to `.gitignore`!<br>
 > 4. Ollama [cheat sheat](https://secretdatascientist.com/ollama-cheatsheet/)<br>
 
 ### Step 4: Launching, working in, and stopping the capsule
