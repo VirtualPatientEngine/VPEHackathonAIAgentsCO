@@ -47,8 +47,8 @@ hide:
 6. Individual team members will contribute by syncing with their teams branch (see section step 4 below)
 
 > <font color=black>💡Tip</font><br>
-> 1. Use the command line `terminal` in the VS Code editor for running `git` commands <br>
-> 2. Quick reference of [git commands](https://education.github.com/git-cheat-sheet-education.pdf) if you forget and the [full documentation](https://git-scm.com/docs/git) if typing `git --help` is not sufficient
+> 1. Use the command line `terminal` in the VS Code editor for running `git` commands<br>
+> 2. Quick reference of [git commands](https://education.github.com/git-cheat-sheet-education.pdf) if you forget and the [full documentation](https://git-scm.com/docs/git) if typing `git --help` is not sufficient<br>
 
 ### Step 3: Familiarization with the template Code Ocean AI Agents capsule
 1. README and overview of the repository
@@ -59,7 +59,7 @@ hide:
     > \# Run the streamlit app<br>
     > streamlit run /code/streamlit_app.py<br>
     > \# Stop the streamlit app<br>
-    > [Ctrl] + [C]
+    > [Ctrl] + [C]<br>
 
 3. Extended examples needed for completing the Hackathon challenges
 4. Downloading datasets and models (Ollama example)
@@ -87,7 +87,7 @@ hide:
     > \# Install stark via pip<br>
     > pip install stark-qa<br>
     > \# Download to scratch<br>
-    > python
+    > python<br>
     > from stark_qa import load_skb<br>
     > skb = load_skb("prime", download_processed=True, root="/scratch")<br>
     > \# Deactivate virtual environment when done<br>
@@ -105,9 +105,9 @@ hide:
 2. In a new terminal, add the remote team branches
 
     > \# add a the VPE remote branches with your teams branch<br>
-    > git remote -v
-    > git remote add upstream https://[user name]:[token]@github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate.git
-    > git fetch --all --prune
+    > git remote -v<br>
+    > git remote add upstream https://[user name]:[token]@github.com/VirtualPatientEngine/VPEHackathonAIAgentsCOTemplate.git<br>
+    > git fetch --all --prune<br>
 
 2. Check to see that your teams branch is there e.g., `upstream [Team Name]`. This is the branch that your team will sync with
 3. Create your branch derived from your teams branch
