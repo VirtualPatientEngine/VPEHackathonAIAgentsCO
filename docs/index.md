@@ -10,3 +10,4 @@ hide:
 - [Task categories](tasks.md)
 - [Judging criteria](judging.md)
 - [Compute setup](setup.md)
+- [Hackathon results](results.md)
