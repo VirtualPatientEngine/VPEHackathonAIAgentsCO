@@ -26,6 +26,10 @@ Create an AI Agent to
 
 ## The winners
 ### 🥇 Talk2Biomodels
+<video controls>
+  <source src="../assets/talk2biomodels_demo.webm" type="video/webm">
+</video>
+
 - **Team**: Anil Kumar Kanasani, Rakesh Hadne Sreenath, and Maryam Najafian Jazi
 - **Judging**: Developed a complete AI Agent that can be used as is to download mathematical models from BioModels, run forward simulations from natural language, and ask questions of simuulation results.
 - **Next stesp**: Adding support for additional LLMs, reverse parameter fitting, and automated species annotations.
@@ -37,7 +41,7 @@ Create an AI Agent to
 
 ### 🥉 Talk2KnowledgeGraphs
 - **Team**: Franscisco Arriaza Gallardo, Andrew Wicks, and Özge Kayisoglu-Kaya
-- **Judging**: Developed an extracted knowledge graph subgraph visualization and question and answering agent.
+- **Judging**: Developed an AI agent to reason over and visualize an extracted knowledge graph subgraph.
 - **Next stesp**: Generalizing the Q&A to operate over the entire knowledge graph, adding support for expanding the knowledge graph from user supplied documents, adding support for link prediction to fill in gaps, and adding support for additional embeddings besides text.
 
 ### 🎗️ Additional contributions
