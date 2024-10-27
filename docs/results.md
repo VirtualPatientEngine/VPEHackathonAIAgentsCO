@@ -21,6 +21,11 @@ Create an AI Agent to
 
 ## The result
 ✅ 1 OpenSource multi-AI-agent workflow starter kit including code, cloud-native virtual environment, and example data assets was created using Code Ocean and ran on Amazon Web Services (AWS) to kick-start the hackathon. <br>
+
+<video controls>
+  <source src="../assets/demo_demo.webm" type="video/webm">
+</video>
+
 ✅ 7 teams (21 participants) bravely undertook the immense challenge requiring both technical skill and biomedical knowledge over two days on October 14 to 15.<br>
 ✅ 3 AI Agents that can add value to Drug Discovery, Drug Development, Biotechnology, and Pharmaceutical research were hacked together and demoed in front of industry judges.<br>
 
