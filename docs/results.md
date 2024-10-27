@@ -21,6 +21,11 @@ Create an AI Agent to
 
 ## The result
 ✅ 1 OpenSource multi-AI-agent workflow starter kit including code, cloud-native virtual environment, and example data assets was created using Code Ocean and ran on Amazon Web Services (AWS) to kick-start the hackathon. <br>
+
+<video controls>
+  <source src="../assets/demo_demo.webm" type="video/webm">
+</video>
+
 ✅ 7 teams (21 participants) bravely undertook the immense challenge requiring both technical skill and biomedical knowledge over two days on October 14 to 15.<br>
 ✅ 3 AI Agents that can add value to Drug Discovery, Drug Development, Biotechnology, and Pharmaceutical research were hacked together and demoed in front of industry judges.<br>
 
@@ -35,11 +40,17 @@ Create an AI Agent to
 - **Next stesp**: Adding support for additional LLMs, reverse parameter fitting, and automated species annotations.
 
 ### 🥈 Talk2Cells
+![talk2cells](./assets/talk2cells_screenshot.jpeg)
+
 - **Team/Consortium**: Robin Koch, Mushtaq Ali, Katharina Bosch, Anton Jesu Vikranth, Ashwith Anand Poojary, Farhad Faghihi, Eron Alkanat, Sanjana Balaji Kuttae, and Jaydeep Bhat 
 - **Judging**: An incredible collaboration across 3 teams to develop components needed for single cell clustering, visualization, annotation, and gene perturbation, but ran out of time integrating the components together to create a complete AI agent. 
 - **Next stesp**: Completing the integration of the developed components to have a ready to use AI agent for single cell sequencing analysis, adding additional functionality from cell2sentence, and adding nf-core pipeline integration for processing raw data.
 
 ### 🥉 Talk2KnowledgeGraphs
+<video controls>
+  <source src="../assets/talk2knowledgegraphs_demo.webm" type="video/webm">
+</video>
+
 - **Team**: Franscisco Arriaza Gallardo, Andrew Wicks, and Özge Kayisoglu-Kaya
 - **Judging**: Developed an AI agent to reason over and visualize an extracted knowledge graph subgraph.
 - **Next stesp**: Generalizing the Q&A to operate over the entire knowledge graph, adding support for expanding the knowledge graph from user supplied documents, adding support for link prediction to fill in gaps, and adding support for additional embeddings besides text.
